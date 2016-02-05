@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath "io.fabric.tools:gradle:$fabricPluginVersion"
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'com.neenbedankt.android-apt'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.mooveit.android.androidtemplateproject"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    productFlavors {
+        production {
+            manifestPlaceholders = [fabricApiKey: "$crashlyticsApiKey"]
+        }
+
+        staging {
+            manifestPlaceholders = [fabricApiKey: "$crashlyticsApiKey"]
+        }
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android
+    compile "com.android.support:appcompat-v7:$supportLibVersion"
+    compile "com.android.support:cardview-v7:$supportLibVersion"
+    compile "com.android.support:design:$supportLibVersion"
+
+    // External
+    compile "com.google.dagger:dagger:$daggerVersion"
+    apt "com.google.dagger:dagger-compiler:$daggerVersion"
+    compile "javax.annotation:jsr250-api:$javaxAnnotationVersion"
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    compile "io.reactivex:rxandroid:$rxAndroidVersion"
+    compile "io.reactivex:rxjava:$rxAndroidVersion"
+    compile "com.jakewharton:butterknife:$butterKnifeVersion"
+    compile "com.jakewharton.timber:timber:$timberVersion"
+
+    compile("com.crashlytics.sdk.android:crashlytics:$crashlyticsSdkVersion@aar") {
+        transitive = true;
+    }
+
+    // Test
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.robolectric:robolectric:$robolectricVersion"
+    testCompile "org.mockito:mockito-all:$mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$hamcrestVersion"
+
+}
