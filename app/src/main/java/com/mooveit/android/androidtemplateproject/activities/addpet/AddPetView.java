@@ -7,4 +7,6 @@ public interface AddPetView {
     void hideProgress();
 
     void showProgress();
+
+    void showError(String message);
 }

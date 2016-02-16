@@ -1,19 +1,19 @@
 package com.mooveit.android.androidtemplateproject.network;
 
-import com.mooveit.android.androidtemplateproject.model.Pet;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
 import java.util.List;
 
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import rx.Observable;
+import rx.Single;
 
 public interface PetStoreService {
 
     @GET("pet/findByTags?tags=mooveit")
-    Observable<List<Pet>> getPets();
+    Single<List<Pet>> getPets();
 
     @POST("pet")
-    Observable<Pet> createPet(@Body Pet pet);
+    Single<Pet> createPet(@Body Pet pet);
 }

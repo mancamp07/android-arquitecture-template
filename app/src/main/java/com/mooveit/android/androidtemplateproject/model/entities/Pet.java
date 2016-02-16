@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.model;
+package com.mooveit.android.androidtemplateproject.model.entities;
 
 import java.util.List;
 

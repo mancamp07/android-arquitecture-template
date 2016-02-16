@@ -2,7 +2,7 @@ package com.mooveit.android.androidtemplateproject.activities.home;
 
 import android.content.Context;
 
-import com.mooveit.android.androidtemplateproject.model.Pet;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
 import java.util.List;
 

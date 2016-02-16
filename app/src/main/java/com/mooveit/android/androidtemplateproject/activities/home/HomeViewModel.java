@@ -1,49 +1,31 @@
 package com.mooveit.android.androidtemplateproject.activities.home;
 
-import android.util.Log;
-
-import com.mooveit.android.androidtemplateproject.model.Pet;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
 
 import java.util.List;
 
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
-public class HomeViewModel {
+public class HomeViewModel implements PetsRepository.OnGetPetsCallback {
 
     private static final String TAG = HomeViewModel.class.getSimpleName();
 
     private final HomeView mHomeView;
-    private final PetStoreService mPetStoreService;
+    private final PetsRepository mPetsRepository;
 
-    public HomeViewModel(HomeView homeView, PetStoreService petStoreService) {
+    public HomeViewModel(HomeView homeView, PetsRepository petsRepository) {
         this.mHomeView = homeView;
-        this.mPetStoreService = petStoreService;
+        this.mPetsRepository = petsRepository;
     }
 
     public void fetchPets() {
-
         mHomeView.showProgress();
-        mPetStoreService.getPets()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<Pet>>() {
-                    @Override
-                    public void onCompleted() {
-                        mHomeView.hideProgress();
-                    }
+        mPetsRepository.getPets(this);
+    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, e.getMessage());
-                    }
+    @Override
+    public void onGetPetsLoaded(List<Pet> pets) {
+        mHomeView.hideProgress();
 
-                    @Override
-                    public void onNext(List<Pet> pets) {
-                        mHomeView.showPets(pets);
-                    }
-                });
+        mHomeView.showPets(pets);
     }
 }

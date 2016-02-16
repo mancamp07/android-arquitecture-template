@@ -8,8 +8,8 @@ import com.mooveit.android.androidtemplateproject.activities.home.HomeView;
 import com.mooveit.android.androidtemplateproject.activities.home.HomeViewModel;
 import com.mooveit.android.androidtemplateproject.activities.home.PetsListAdapter;
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
-import com.mooveit.android.androidtemplateproject.model.Pet;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
 
 import java.util.ArrayList;
 
@@ -26,8 +26,8 @@ public class HomeModule {
     }
 
     @Provides @PerActivity
-    HomeViewModel provideHomeViewModel(PetStoreService petStoreService) {
-        return new HomeViewModel(mHomeView, petStoreService);
+    HomeViewModel provideHomeViewModel(PetsRepository petsRepository) {
+        return new HomeViewModel(mHomeView, petsRepository);
     }
 
     @Provides @PerActivity

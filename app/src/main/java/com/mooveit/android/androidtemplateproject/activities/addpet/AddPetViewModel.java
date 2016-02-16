@@ -1,49 +1,36 @@
 package com.mooveit.android.androidtemplateproject.activities.addpet;
 
-import android.util.Log;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
 
-import com.mooveit.android.androidtemplateproject.model.Pet;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
-
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
-public class AddPetViewModel {
+public class AddPetViewModel implements PetsRepository.OnCreatePetCallback {
 
     private static final String TAG = AddPetViewModel.class.getSimpleName();
 
     private final AddPetView mAddPetView;
-    private final PetStoreService mPetStoreService;
+    private final PetsRepository mPetsRepository;
 
-    public AddPetViewModel(AddPetView addPetView, PetStoreService petStoreService) {
+    public AddPetViewModel(AddPetView addPetView, PetsRepository petsRepository) {
         this.mAddPetView = addPetView;
-        this.mPetStoreService = petStoreService;
+        this.mPetsRepository = petsRepository;
     }
 
     public void createPet(Pet pet) {
 
         mAddPetView.showProgress();
-        mPetStoreService.createPet(pet)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Pet>() {
-                    @Override
-                    public void onCompleted() {
-                        mAddPetView.hideProgress();
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(Pet pet) {
-                        mAddPetView.onPetCreated();
-                    }
-                });
-
+        mPetsRepository.createPet(pet, this);
     }
 
+    @Override
+    public void onPetCreated(Pet pet) {
+        mAddPetView.hideProgress();
+        mAddPetView.onPetCreated();
+    }
+
+    @Override
+    public void onCreatePetFailed(String message) {
+        mAddPetView.hideProgress();
+        mAddPetView.showError(message);
+    }
 }

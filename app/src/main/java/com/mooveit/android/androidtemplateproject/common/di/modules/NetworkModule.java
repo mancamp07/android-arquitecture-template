@@ -5,6 +5,8 @@ import android.app.Application;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.model.repository.impl.PetsRepositoryImpl;
 import com.mooveit.android.androidtemplateproject.network.PetStoreService;
 
 import javax.inject.Singleton;
@@ -61,7 +63,14 @@ public class NetworkModule {
     }
 
     @Provides
+    @Singleton
     PetStoreService providePetStoreService(Retrofit retrofit) {
         return retrofit.create(PetStoreService.class);
+    }
+
+    @Provides
+    @Singleton
+    PetsRepository providePetsRepository(PetStoreService petStoreService) {
+        return new PetsRepositoryImpl(petStoreService);
     }
 }

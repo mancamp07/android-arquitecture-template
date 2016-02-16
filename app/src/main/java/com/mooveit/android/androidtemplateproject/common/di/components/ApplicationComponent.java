@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.mooveit.android.androidtemplateproject.common.di.modules.ApplicationModule;
 import com.mooveit.android.androidtemplateproject.common.di.modules.NetworkModule;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
+import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
 
 import javax.inject.Singleton;
 
@@ -18,5 +18,5 @@ public interface ApplicationComponent {
 
     Application application();
 
-    PetStoreService petStoreService();
+    PetsRepository petsRepository();
 }

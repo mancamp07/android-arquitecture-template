@@ -4,13 +4,15 @@ import android.content.Context;
 
 import com.mooveit.android.androidtemplateproject.activities.home.HomeView;
 import com.mooveit.android.androidtemplateproject.activities.home.HomeViewModel;
-import com.mooveit.android.androidtemplateproject.model.Pet;
-import com.mooveit.android.androidtemplateproject.model.Tag;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.model.entities.Tag;
+import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -19,11 +21,6 @@ import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import rx.Observable;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -41,7 +38,10 @@ public class HomeViewModelUnitTest {
     HomeViewModel mHomeViewModel;
 
     @Mock
-    PetStoreService mPetStoreService;
+    PetsRepository mPetsRepository;
+
+    @Captor
+    private ArgumentCaptor<PetsRepository.OnGetPetsCallback> mOnGetPetsCallbackCaptor;
 
     private static List<Pet> mMockPets = new ArrayList<>();
     private static List<Tag> mMockTags = new ArrayList<>();
@@ -74,22 +74,7 @@ public class HomeViewModelUnitTest {
         mContext = RuntimeEnvironment.application;
         when(mHomeView.getContext()).thenReturn(mContext);
 
-        when(mPetStoreService.getPets())
-                .thenReturn(Observable.just(mMockPets)
-                        .subscribeOn(Schedulers.immediate())
-                        .doOnNext(new Action1<List<Pet>>() {
-                            @Override
-                            public void call(List<Pet> pets) {
-                                mHomeView.showPets(pets);
-                            }
-                        })
-                        .doOnCompleted(new Action0() {
-                            @Override
-                            public void call() {
-                                mHomeView.hideProgress();
-                            }
-                        }));
-        mHomeViewModel = new HomeViewModel(mHomeView, mPetStoreService);
+        mHomeViewModel = new HomeViewModel(mHomeView, mPetsRepository);
     }
 
     @Test
@@ -98,7 +83,9 @@ public class HomeViewModelUnitTest {
 
         verify(mHomeView).showProgress();
 
-        verify(mPetStoreService).getPets();
+        verify(mPetsRepository).getPets(mOnGetPetsCallbackCaptor.capture());
+
+        mOnGetPetsCallbackCaptor.getValue().onGetPetsLoaded(mMockPets);
 
         verify(mHomeView).showPets(mMockPets);
 

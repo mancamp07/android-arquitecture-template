@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.activities.petdetails.PetDetailsActivity;
-import com.mooveit.android.androidtemplateproject.model.Pet;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
 import java.util.List;
 
@@ -72,5 +72,4 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetVie
         this.mPets.addAll(pets);
         notifyDataSetChanged();
     }
-
 }

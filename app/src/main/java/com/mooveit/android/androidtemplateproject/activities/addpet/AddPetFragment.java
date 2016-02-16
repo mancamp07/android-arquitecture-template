@@ -15,8 +15,8 @@ import com.mooveit.android.androidtemplateproject.activities.addpet.di.AddPetCom
 import com.mooveit.android.androidtemplateproject.activities.addpet.di.AddPetModule;
 import com.mooveit.android.androidtemplateproject.activities.addpet.di.DaggerAddPetComponent;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
-import com.mooveit.android.androidtemplateproject.model.Pet;
-import com.mooveit.android.androidtemplateproject.model.Tag;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.model.entities.Tag;
 
 import java.util.Arrays;
 
@@ -112,6 +112,12 @@ public class AddPetFragment extends Fragment implements AddPetView {
     @Override
     public void showProgress() {
         mSnackbar = Snackbar.make(mCreateButton, "Enviando...", Snackbar.LENGTH_INDEFINITE);
+        mSnackbar.show();
+    }
+
+    @Override
+    public void showError(String message) {
+        mSnackbar = Snackbar.make(mCreateButton, message, Snackbar.LENGTH_SHORT);
         mSnackbar.show();
     }
 }

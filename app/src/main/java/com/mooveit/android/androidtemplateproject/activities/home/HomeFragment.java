@@ -14,7 +14,7 @@ import com.mooveit.android.androidtemplateproject.activities.home.di.DaggerHomeC
 import com.mooveit.android.androidtemplateproject.activities.home.di.HomeComponent;
 import com.mooveit.android.androidtemplateproject.activities.home.di.HomeModule;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
-import com.mooveit.android.androidtemplateproject.model.Pet;
+import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
 import java.util.List;
 
