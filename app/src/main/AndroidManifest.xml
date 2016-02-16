@@ -2,16 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mooveit.android.androidtemplateproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".common.AndroidTemplateApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".common.AndroidTemplateApplication">
-
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="${fabricApiKey}" />
@@ -26,8 +25,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <activity
+            android:name=".activities.petdetails.PetDetailsActivity"
+            android:label="@string/title_activity_pet_details"
+            android:parentActivityName=".activities.home.HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mooveit.android.androidtemplateproject.activities.home.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activities.addpet.AddPetActivity"
+            android:label="@string/title_activity_add_pet"
+            android:parentActivityName=".activities.home.HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mooveit.android.androidtemplateproject.activities.home.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>
