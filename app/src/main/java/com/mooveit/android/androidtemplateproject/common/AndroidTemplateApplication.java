@@ -8,6 +8,7 @@ import com.mooveit.android.androidtemplateproject.common.di.components.Applicati
 import com.mooveit.android.androidtemplateproject.common.di.components.DaggerApplicationComponent;
 import com.mooveit.android.androidtemplateproject.common.di.modules.ApplicationModule;
 import com.mooveit.android.androidtemplateproject.common.di.modules.NetworkModule;
+import com.mooveit.android.androidtemplateproject.common.di.modules.RepositoriesModule;
 
 import timber.log.Timber;
 
@@ -41,5 +42,9 @@ public class AndroidTemplateApplication extends Application {
 
     public static AndroidTemplateApplication getInstance(Context context) {
         return (AndroidTemplateApplication) context.getApplicationContext();
+    }
+
+    public RepositoriesModule getRepositoriesModule() {
+        return new RepositoriesModule();
     }
 }

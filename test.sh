@@ -10,4 +10,3 @@ load() {
 }; load
 
 run ./gradlew app:testStagingDebugUnitTest
-#run ./gradlew app:connectedAndroidTest

@@ -1,8 +1,12 @@
 package com.mooveit.android.androidtemplateproject.model.entities;
 
-import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Pet {
+import java.util.List;
+import java.util.Locale;
+
+public class Pet implements Parcelable {
 
     private long id;
 
@@ -15,6 +19,26 @@ public class Pet {
     private String status;
 
     public Pet() {}
+
+    protected Pet(Parcel in) {
+        id = in.readLong();
+        name = in.readString();
+        photoUrls = in.readString();
+        tags = in.createTypedArrayList(Tag.CREATOR);
+        status = in.readString();
+    }
+
+    public static final Creator<Pet> CREATOR = new Creator<Pet>() {
+        @Override
+        public Pet createFromParcel(Parcel in) {
+            return new Pet(in);
+        }
+
+        @Override
+        public Pet[] newArray(int size) {
+            return new Pet[size];
+        }
+    };
 
     public long getId() {
         return id;
@@ -58,7 +82,31 @@ public class Pet {
 
     @Override
     public String toString() {
-        return String.format("{id=%d, name=%s, photoUrls=%s, status=%s}",
+        return String.format(Locale.getDefault(), "{id=%d, name=%s, photoUrls=%s, status=%s}",
                 id, name, photoUrls, status);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o instanceof Pet) {
+            Pet that = (Pet)o;
+            return id == that.id;
+        }
+        return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(name);
+        dest.writeString(photoUrls);
+        dest.writeTypedList(tags);
+        dest.writeString(status);
     }
 }

@@ -1,20 +1,21 @@
 package com.mooveit.android.androidtemplateproject.activities.addpet;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.activities.addpet.di.AddPetComponent;
 import com.mooveit.android.androidtemplateproject.activities.addpet.di.AddPetModule;
 import com.mooveit.android.androidtemplateproject.activities.addpet.di.DaggerAddPetComponent;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
+import com.mooveit.android.androidtemplateproject.common.Constants;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.model.entities.Tag;
 
@@ -23,20 +24,18 @@ import java.util.Arrays;
 import javax.inject.Inject;
 
 import butterknife.Bind;
+import butterknife.BindString;
 import butterknife.ButterKnife;
+
+import static butterknife.ButterKnife.findById;
 
 public class AddPetFragment extends Fragment implements AddPetView {
 
     private AddPetComponent mAddPetComponent;
 
-    @Bind(R.id.pet_name)
-    EditText mPetNameET;
-
-    @Bind(R.id.pet_tag)
-    EditText mPetTagET;
-
-    @Bind(R.id.create_button)
-    Button mCreateButton;
+    @Bind(R.id.pet_name_text_input_layout) TextInputLayout mPetNameTIL;
+    @Bind(R.id.pet_name) TextInputEditText mPetNameET;
+    @BindString(R.string.empty_name_error) String mEmptyNameErrorMessage;
 
     private Snackbar mSnackbar;
 
@@ -73,13 +72,20 @@ public class AddPetFragment extends Fragment implements AddPetView {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ButterKnife.bind(this, view);
 
-        mCreateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAddPetViewModel.createPet(createPet());
-            }
-        });
+        setupSubmitCreateFab();
+    }
 
+    private void setupSubmitCreateFab() {
+        FloatingActionButton createFab = findById(getActivity(), R.id.create_button);
+        createFab.setOnClickListener(v -> onCreateButtonClicked());
+    }
+
+    public void onCreateButtonClicked() {
+        if (mPetNameET.getText().toString().isEmpty()) {
+            mPetNameTIL.setError(mEmptyNameErrorMessage);
+        } else {
+            mAddPetViewModel.createPet(createPet());
+        }
     }
 
     private Pet createPet() {
@@ -87,7 +93,7 @@ public class AddPetFragment extends Fragment implements AddPetView {
         Pet pet = new Pet();
         pet.setName(mPetNameET.getText().toString());
         Tag tag = new Tag();
-        tag.setName(mPetTagET.getText().toString());
+        tag.setName(Constants.PET_TAG);
         pet.setTags(Arrays.asList(tag));
 
         return pet;
@@ -96,10 +102,14 @@ public class AddPetFragment extends Fragment implements AddPetView {
     @Override
     public void onPetCreated() {
 
-        Toast.makeText(getContext(), "Mascota creada!", Toast.LENGTH_SHORT)
+        Snackbar.make(mPetNameET, R.string.created_pet_success, Snackbar.LENGTH_SHORT)
+                .setCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        getActivity().finish();
+                    }
+                })
                 .show();
-
-        getActivity().finish();
     }
 
     @Override
@@ -111,13 +121,13 @@ public class AddPetFragment extends Fragment implements AddPetView {
 
     @Override
     public void showProgress() {
-        mSnackbar = Snackbar.make(mCreateButton, "Enviando...", Snackbar.LENGTH_INDEFINITE);
+        mSnackbar = Snackbar.make(mPetNameET, R.string.sending, Snackbar.LENGTH_INDEFINITE);
         mSnackbar.show();
     }
 
     @Override
     public void showError(String message) {
-        mSnackbar = Snackbar.make(mCreateButton, message, Snackbar.LENGTH_SHORT);
+        mSnackbar = Snackbar.make(mPetNameET, message, Snackbar.LENGTH_SHORT);
         mSnackbar.show();
     }
 }

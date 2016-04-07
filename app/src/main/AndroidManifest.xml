@@ -11,6 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="${fabricApiKey}" />
@@ -42,6 +43,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mooveit.android.androidtemplateproject.activities.home.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activities.editpet.EditPetActivity"
+            android:label="@string/title_activity_edit_pet"
+            android:parentActivityName=".activities.petdetails.PetDetailsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mooveit.android.androidtemplateproject.activities.petdetails.PetDetailsActivity" />
         </activity>
     </application>
 

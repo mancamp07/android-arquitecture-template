@@ -41,3 +41,6 @@
 -keepclasseswithmembernames class * {
     @icepick.* <fields>;
 }
+
+# Retrolambda
+-dontwarn java.lang.invoke.*

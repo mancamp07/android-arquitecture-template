@@ -13,8 +13,6 @@ import timber.log.Timber;
 
 public class PetsRepositoryImpl implements PetsRepository {
 
-    private static final String TAG = PetsRepositoryImpl.class.getSimpleName();
-
     private final PetStoreService mPetStoreService;
 
     public PetsRepositoryImpl(PetStoreService petStoreService) {
@@ -24,11 +22,12 @@ public class PetsRepositoryImpl implements PetsRepository {
     @Override
     public void getPets(final OnGetPetsCallback callback) {
         mPetStoreService.getPets()
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<List<Pet>>() {
                     @Override
                     public void onError(Throwable e) {
+                        callback.onGetPetsFailed(e);
                         Timber.e(e, null);
                     }
 
@@ -42,7 +41,7 @@ public class PetsRepositoryImpl implements PetsRepository {
     public void createPet(final Pet pet, final OnCreatePetCallback callback) {
 
         mPetStoreService.createPet(pet)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<Pet>() {
                     @Override
@@ -52,7 +51,43 @@ public class PetsRepositoryImpl implements PetsRepository {
 
                     @Override
                     public void onError(Throwable error) {
-                        callback.onCreatePetFailed(error.getMessage());
+                        callback.onCreatePetFailed(error);
+                    }
+                });
+    }
+
+    @Override
+    public void updatePet(Pet pet, final OnEditPetCallback callback) {
+        mPetStoreService.updatePet(pet)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<Pet>() {
+                    @Override
+                    public void onSuccess(Pet pet) {
+                        callback.onEditPetSuccess(pet);
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        callback.onEditPetFailed(error);
+                    }
+                });
+    }
+
+    @Override
+    public void deletePet(Pet pet, OnDeletePetCallback callback) {
+        mPetStoreService.deletePet(pet.getId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<Void>() {
+                    @Override
+                    public void onSuccess(Void value) {
+                        callback.onDeletePetSuccess();
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        callback.onDeletePetFailed(error);
                     }
                 });
     }

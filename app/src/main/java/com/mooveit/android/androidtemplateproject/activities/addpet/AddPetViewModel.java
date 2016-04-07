@@ -29,8 +29,8 @@ public class AddPetViewModel implements PetsRepository.OnCreatePetCallback {
     }
 
     @Override
-    public void onCreatePetFailed(String message) {
+    public void onCreatePetFailed(Throwable error) {
         mAddPetView.hideProgress();
-        mAddPetView.showError(message);
+        mAddPetView.showError(error.getMessage());
     }
 }
