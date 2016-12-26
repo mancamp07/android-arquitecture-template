@@ -1,8 +1,8 @@
 package com.mooveit.android.androidtemplateproject.editpet.di;
 
-import com.mooveit.android.androidtemplateproject.editpet.EditPetFragment;
 import com.mooveit.android.androidtemplateproject.common.di.components.ApplicationComponent;
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
+import com.mooveit.android.androidtemplateproject.editpet.EditPetActivity;
 
 import dagger.Component;
 
@@ -13,5 +13,5 @@ import dagger.Component;
 )
 public interface EditPetComponent {
 
-    void inject(EditPetFragment editPetFragment);
+    void inject(EditPetActivity editPetActivity);
 }
