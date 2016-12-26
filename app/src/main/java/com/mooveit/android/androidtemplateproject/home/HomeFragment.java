@@ -1,10 +1,9 @@
-package com.mooveit.android.androidtemplateproject.activities.home;
+package com.mooveit.android.androidtemplateproject.home;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -16,10 +15,10 @@ import android.view.ViewGroup;
 import android.widget.ViewFlipper;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.activities.editpet.EditPetActivity;
-import com.mooveit.android.androidtemplateproject.activities.home.di.DaggerHomeComponent;
-import com.mooveit.android.androidtemplateproject.activities.home.di.HomeComponent;
-import com.mooveit.android.androidtemplateproject.activities.home.di.HomeModule;
+import com.mooveit.android.androidtemplateproject.editpet.EditPetActivity;
+import com.mooveit.android.androidtemplateproject.home.di.DaggerHomeComponent;
+import com.mooveit.android.androidtemplateproject.home.di.HomeComponent;
+import com.mooveit.android.androidtemplateproject.home.di.HomeModule;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
 import com.mooveit.android.androidtemplateproject.common.ui.recyclerview.VerticalSpacingItemDecoration;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;

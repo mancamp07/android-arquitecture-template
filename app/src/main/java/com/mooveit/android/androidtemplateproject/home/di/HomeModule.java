@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.home.di;
+package com.mooveit.android.androidtemplateproject.home.di;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -8,14 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.activities.home.HomeView;
-import com.mooveit.android.androidtemplateproject.activities.home.HomeViewModel;
-import com.mooveit.android.androidtemplateproject.activities.home.PetsListAdapter;
+import com.mooveit.android.androidtemplateproject.home.HomeView;
+import com.mooveit.android.androidtemplateproject.home.HomeViewModel;
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
-
-import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;

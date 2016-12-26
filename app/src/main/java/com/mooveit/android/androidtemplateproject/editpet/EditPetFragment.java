@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.editpet;
+package com.mooveit.android.androidtemplateproject.editpet;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.activities.editpet.di.DaggerEditPetComponent;
-import com.mooveit.android.androidtemplateproject.activities.editpet.di.EditPetComponent;
-import com.mooveit.android.androidtemplateproject.activities.editpet.di.EditPetModule;
+import com.mooveit.android.androidtemplateproject.editpet.di.DaggerEditPetComponent;
+import com.mooveit.android.androidtemplateproject.editpet.di.EditPetComponent;
+import com.mooveit.android.androidtemplateproject.editpet.di.EditPetModule;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 

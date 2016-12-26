@@ -1,7 +1,7 @@
-package com.mooveit.android.androidtemplateproject.activities.editpet.di;
+package com.mooveit.android.androidtemplateproject.editpet.di;
 
-import com.mooveit.android.androidtemplateproject.activities.editpet.EditPetView;
-import com.mooveit.android.androidtemplateproject.activities.editpet.EditPetViewModel;
+import com.mooveit.android.androidtemplateproject.editpet.EditPetView;
+import com.mooveit.android.androidtemplateproject.editpet.EditPetViewModel;
 import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
 
 import dagger.Module;

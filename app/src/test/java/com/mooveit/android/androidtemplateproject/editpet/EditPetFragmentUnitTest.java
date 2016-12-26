@@ -7,8 +7,6 @@ import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.activities.editpet.EditPetActivity;
-import com.mooveit.android.androidtemplateproject.activities.editpet.EditPetFragment;
 import com.mooveit.android.androidtemplateproject.common.BaseRobolectricUnitTest;
 import com.mooveit.android.androidtemplateproject.common.robolectric.shadows.ShadowSnackbar;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;

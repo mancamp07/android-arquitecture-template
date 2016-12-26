@@ -1,7 +1,6 @@
 package com.mooveit.android.androidtemplateproject.home;
 
-import com.mooveit.android.androidtemplateproject.activities.editpet.EditPetActivity;
-import com.mooveit.android.androidtemplateproject.activities.home.HomeFragment;
+import com.mooveit.android.androidtemplateproject.editpet.EditPetActivity;
 import com.mooveit.android.androidtemplateproject.common.BaseRobolectricUnitTest;
 import com.mooveit.android.androidtemplateproject.common.robolectric.shadows.ShadowSnackbar;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;

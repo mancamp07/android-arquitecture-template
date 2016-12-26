@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.addpet;
+package com.mooveit.android.androidtemplateproject.addpet;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,12 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.activities.addpet.di.AddPetComponent;
-import com.mooveit.android.androidtemplateproject.activities.addpet.di.AddPetModule;
-import com.mooveit.android.androidtemplateproject.activities.addpet.di.DaggerAddPetComponent;
+import com.mooveit.android.androidtemplateproject.addpet.di.AddPetComponent;
+import com.mooveit.android.androidtemplateproject.addpet.di.AddPetModule;
+import com.mooveit.android.androidtemplateproject.addpet.di.DaggerAddPetComponent;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
 import com.mooveit.android.androidtemplateproject.common.Constants;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;

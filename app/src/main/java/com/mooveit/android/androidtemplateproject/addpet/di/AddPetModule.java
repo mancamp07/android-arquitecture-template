@@ -1,7 +1,7 @@
-package com.mooveit.android.androidtemplateproject.activities.addpet.di;
+package com.mooveit.android.androidtemplateproject.addpet.di;
 
-import com.mooveit.android.androidtemplateproject.activities.addpet.AddPetView;
-import com.mooveit.android.androidtemplateproject.activities.addpet.AddPetViewModel;
+import com.mooveit.android.androidtemplateproject.addpet.AddPetView;
+import com.mooveit.android.androidtemplateproject.addpet.AddPetViewModel;
 import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
 
 import dagger.Module;

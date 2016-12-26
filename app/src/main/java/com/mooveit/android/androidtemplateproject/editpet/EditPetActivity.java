@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.editpet;
+package com.mooveit.android.androidtemplateproject.editpet;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
