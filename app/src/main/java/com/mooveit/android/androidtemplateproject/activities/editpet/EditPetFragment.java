@@ -20,8 +20,8 @@ import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
 import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static butterknife.ButterKnife.findById;
@@ -35,8 +35,8 @@ public class EditPetFragment extends Fragment implements EditPetView {
     private Pet mPet;
     private Snackbar mSnackbar;
 
-    @Bind(R.id.name_text_input_layout) TextInputLayout mPetNameTIL;
-    @Bind(R.id.name_edit_text) TextInputEditText mPetNameET;
+    @BindView(R.id.name_text_input_layout) TextInputLayout mPetNameTIL;
+    @BindView(R.id.name_edit_text) TextInputEditText mPetNameET;
     @BindString(R.string.empty_name_error) String mEmptyNameErrorMessage;
 
     @Inject

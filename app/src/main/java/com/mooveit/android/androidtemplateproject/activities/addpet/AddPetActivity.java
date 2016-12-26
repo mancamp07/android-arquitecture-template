@@ -6,12 +6,12 @@ import android.support.v7.widget.Toolbar;
 
 import com.mooveit.android.androidtemplateproject.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AddPetActivity extends AppCompatActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override

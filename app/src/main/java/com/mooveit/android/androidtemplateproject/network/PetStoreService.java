@@ -14,7 +14,7 @@ import rx.Single;
 
 public interface PetStoreService {
 
-    @GET("pet/findByTags?tags=mooveit")
+    @GET("pet/findByStatus?status=available")
     Single<List<Pet>> getPets();
 
     @POST("pet")

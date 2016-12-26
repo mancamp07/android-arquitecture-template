@@ -8,13 +8,13 @@ import android.support.v7.widget.Toolbar;
 import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.activities.addpet.AddPetActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override

@@ -15,31 +15,22 @@ import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetViewHolder> {
 
-    private final List<Pet> mPets;
-    private final OnItemClickListener mOnItemClickListener;
     private RecyclerView mRecyclerView;
-    private OnItemDeletedListener mOnItemDeletedListener;
-
-    public PetsListAdapter(List<Pet> pets, OnItemClickListener onItemClickListener) {
-        this.mPets = pets;
-        this.mOnItemClickListener = onItemClickListener;
-    }
+    private final OnItemClickListener mOnItemClickListener;
+    private final OnItemDeletedListener mOnItemDeletedListener;
+    private final List<Pet> mPets;
 
     public PetsListAdapter(List<Pet> pets,
                            OnItemClickListener onItemClickListener,
                            OnItemDeletedListener onItemDeletedListener) {
         this.mPets = pets;
         this.mOnItemClickListener = onItemClickListener;
-        this.mOnItemDeletedListener = onItemDeletedListener;
-    }
-
-    public void setOnItemDeletedCallback(OnItemDeletedListener onItemDeletedListener) {
         this.mOnItemDeletedListener = onItemDeletedListener;
     }
 
@@ -55,9 +46,9 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetVie
     public class PetViewHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener {
 
-        @Bind(R.id.card_view) CardView mCardView;
-        @Bind(R.id.pet_name) TextView mNameTV;
-        @Bind(R.id.pet_status) TextView mStatusTV;
+        @BindView(R.id.card_view) CardView mCardView;
+        @BindView(R.id.pet_name) TextView mNameTV;
+        @BindView(R.id.pet_status) TextView mStatusTV;
 
         @OnClick(R.id.edit_button)
         public void onEditClicked() {
