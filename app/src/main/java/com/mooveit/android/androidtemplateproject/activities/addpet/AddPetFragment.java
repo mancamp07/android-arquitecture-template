@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.activities.addpet.di.AddPetComponent;
@@ -23,8 +24,8 @@ import java.util.Arrays;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
 import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static butterknife.ButterKnife.findById;
@@ -33,9 +34,14 @@ public class AddPetFragment extends Fragment implements AddPetView {
 
     private AddPetComponent mAddPetComponent;
 
-    @Bind(R.id.pet_name_text_input_layout) TextInputLayout mPetNameTIL;
-    @Bind(R.id.pet_name) TextInputEditText mPetNameET;
-    @BindString(R.string.empty_name_error) String mEmptyNameErrorMessage;
+    @BindView(R.id.pet_name_text_input_layout)
+    TextInputLayout mPetNameTIL;
+    @BindView(R.id.pet_name)
+    TextInputEditText mPetNameET;
+    @BindView(R.id.create_button)
+    FloatingActionButton mCreateButton;
+    @BindString(R.string.empty_name_error)
+    String mEmptyNameErrorMessage;
 
     private Snackbar mSnackbar;
 
@@ -103,7 +109,7 @@ public class AddPetFragment extends Fragment implements AddPetView {
     public void onPetCreated() {
 
         Snackbar.make(mPetNameET, R.string.created_pet_success, Snackbar.LENGTH_SHORT)
-                .setCallback(new Snackbar.Callback() {
+                .addCallback(new Snackbar.Callback() {
                     @Override
                     public void onDismissed(Snackbar snackbar, int event) {
                         getActivity().finish();

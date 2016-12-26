@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,7 +29,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.BindInt;
 import butterknife.ButterKnife;
 
@@ -36,12 +39,35 @@ public class HomeFragment extends Fragment
         PetsListAdapter.OnItemDeletedListener {
 
     private HomeComponent mHomeComponent;
-    private Snackbar mSnackbar;
 
-    @Bind(R.id.view_flipper) ViewFlipper mViewFlipper;
-    @Bind(R.id.pets_list) RecyclerView mPetsListRV;
-    @Bind(R.id.empty_pets_list) View mPetsListEmptyView;
-    @BindInt(R.integer.list_item_vertical_spacing) int mItemVerticalSpacing;
+    @BindView(R.id.view_flipper)
+    ViewFlipper mViewFlipper;
+
+    @BindView(R.id.pets_list)
+    RecyclerView mPetsListRV;
+
+    @BindView(R.id.progressbar)
+    ContentLoadingProgressBar mProgressBar;
+
+    @BindView(R.id.empty_pets_list)
+    View mPetsListEmptyView;
+
+    @BindInt(R.integer.list_item_vertical_spacing)
+    int mItemVerticalSpacing;
+
+    @Inject
+    HomeViewModel mViewModel;
+
+    PetsListAdapter mPetsListAdapter;
+
+    @Inject
+    DefaultItemAnimator mDefaultItemAnimator;
+
+    @Inject
+    DividerItemDecoration mDividerItemDecoration;
+
+    @Inject
+    RecyclerView.LayoutManager mLayoutManager;
 
     private final RecyclerView.AdapterDataObserver mAdapterDataObserver = new RecyclerView.AdapterDataObserver() {
         @Override
@@ -59,14 +85,6 @@ public class HomeFragment extends Fragment
             onPetsListChanged();
         }
     };
-
-    @Inject
-    HomeViewModel mViewModel;
-
-    PetsListAdapter mPetsListAdapter;
-
-    public HomeFragment() {
-    }
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -130,7 +148,8 @@ public class HomeFragment extends Fragment
     }
 
     @Override
-    public void showPet(Pet pet) {}
+    public void showPet(Pet pet) {
+    }
 
     @Override
     public void showEditPet(Pet pet) {
@@ -174,14 +193,12 @@ public class HomeFragment extends Fragment
     }
 
     public void showProgress() {
-        mSnackbar = Snackbar.make(mPetsListRV, R.string.loading_pets_message, Snackbar.LENGTH_INDEFINITE);
-        mSnackbar.show();
+        mViewFlipper.setDisplayedChild(mViewFlipper.indexOfChild(mProgressBar));
+        mProgressBar.show();
     }
 
     public void hideProgress() {
-        if (mSnackbar != null) {
-            mSnackbar.dismiss();
-        }
+        mProgressBar.hide();
     }
 
     private void onPetsListChanged() {

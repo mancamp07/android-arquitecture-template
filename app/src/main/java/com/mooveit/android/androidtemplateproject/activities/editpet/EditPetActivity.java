@@ -7,14 +7,14 @@ import android.support.v7.widget.Toolbar;
 import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EditPetActivity extends AppCompatActivity {
 
     public static final String ARG_PET_EXTRAS = ":Extras:Pet:Parcelable";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     private Pet mPet;
