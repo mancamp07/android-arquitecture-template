@@ -1,6 +1,6 @@
-package com.mooveit.android.androidtemplateproject.activities.addpet.di;
+package com.mooveit.android.androidtemplateproject.editpet.di;
 
-import com.mooveit.android.androidtemplateproject.activities.addpet.AddPetFragment;
+import com.mooveit.android.androidtemplateproject.editpet.EditPetFragment;
 import com.mooveit.android.androidtemplateproject.common.di.components.ApplicationComponent;
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
 
@@ -9,9 +9,9 @@ import dagger.Component;
 @PerActivity
 @Component(
         dependencies = ApplicationComponent.class,
-        modules = AddPetModule.class
+        modules = EditPetModule.class
 )
-public interface AddPetComponent {
+public interface EditPetComponent {
 
-    void inject(AddPetFragment addPetFragment);
+    void inject(EditPetFragment editPetFragment);
 }

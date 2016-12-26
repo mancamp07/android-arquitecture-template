@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.home;
+package com.mooveit.android.androidtemplateproject.home;
 
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;

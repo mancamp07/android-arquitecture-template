@@ -4,8 +4,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.activities.addpet.AddPetActivity;
-import com.mooveit.android.androidtemplateproject.activities.home.HomeActivity;
+import com.mooveit.android.androidtemplateproject.addpet.AddPetActivity;
 import com.mooveit.android.androidtemplateproject.common.BaseRobolectricUnitTest;
 
 import org.junit.Test;

@@ -13,7 +13,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:clipToPadding="false"
-        tools:context=".activities.home.HomeActivity"
+        tools:context=".home.HomeActivity"
         tools:showIn="@layout/activity_home" />
 
     <TextView

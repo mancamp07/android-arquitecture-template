@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.home;
+package com.mooveit.android.androidtemplateproject.home;
 
 import com.mooveit.android.androidtemplateproject.common.views.ProgressView;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;

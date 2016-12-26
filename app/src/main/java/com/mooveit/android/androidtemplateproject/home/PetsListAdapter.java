@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.home;
+package com.mooveit.android.androidtemplateproject.home;
 
 import android.graphics.Canvas;
 import android.support.design.widget.Snackbar;

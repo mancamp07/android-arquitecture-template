@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.petdetails;
+package com.mooveit.android.androidtemplateproject.petdetails;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

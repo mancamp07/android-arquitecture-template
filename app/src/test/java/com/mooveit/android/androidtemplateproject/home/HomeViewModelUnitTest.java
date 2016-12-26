@@ -1,7 +1,5 @@
 package com.mooveit.android.androidtemplateproject.home;
 
-import com.mooveit.android.androidtemplateproject.activities.home.HomeView;
-import com.mooveit.android.androidtemplateproject.activities.home.HomeViewModel;
 import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
 

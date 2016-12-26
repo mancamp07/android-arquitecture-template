@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.petdetails;
+package com.mooveit.android.androidtemplateproject.petdetails;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

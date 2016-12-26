@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.activities.home;
+package com.mooveit.android.androidtemplateproject.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.activities.addpet.AddPetActivity;
+import com.mooveit.android.androidtemplateproject.addpet.AddPetActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
