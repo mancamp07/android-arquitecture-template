@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.mooveit.android.androidtemplateproject.common.di.modules.ApplicationModule;
 import com.mooveit.android.androidtemplateproject.common.di.modules.NetworkModule;
-import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 
 import javax.inject.Singleton;
 

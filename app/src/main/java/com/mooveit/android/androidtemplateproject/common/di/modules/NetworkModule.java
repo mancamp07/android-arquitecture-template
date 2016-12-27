@@ -5,9 +5,9 @@ import android.app.Application;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
-import com.mooveit.android.androidtemplateproject.model.repository.impl.PetsRepositoryImpl;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
+import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.common.model.repository.impl.PetsRepositoryImpl;
+import com.mooveit.android.androidtemplateproject.common.network.PetStoreService;
 
 import javax.inject.Singleton;
 

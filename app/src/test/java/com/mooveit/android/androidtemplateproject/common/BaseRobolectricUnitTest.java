@@ -1,5 +1,7 @@
 package com.mooveit.android.androidtemplateproject.common;
 
+import android.os.Build;
+
 import com.mooveit.android.androidtemplateproject.BuildConfig;
 import com.mooveit.android.androidtemplateproject.common.robolectric.runner.CustomRobolectricGradleTestRunner;
 
@@ -15,7 +17,7 @@ import static org.robolectric.Shadows.shadowOf;
 @Config(
         application = TestApplication.class,
         constants = BuildConfig.class,
-        sdk = 21)
+        sdk = Build.VERSION_CODES.M)
 public abstract class BaseRobolectricUnitTest {
 
     protected TestApplication getApplication() {

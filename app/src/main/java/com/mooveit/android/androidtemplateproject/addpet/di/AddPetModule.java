@@ -1,8 +1,11 @@
 package com.mooveit.android.androidtemplateproject.addpet.di;
 
-import com.mooveit.android.androidtemplateproject.addpet.AddPetView;
-import com.mooveit.android.androidtemplateproject.addpet.AddPetViewModel;
-import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.addpet.domain.AddPetInteractor;
+import com.mooveit.android.androidtemplateproject.addpet.domain.AddPetInteractorImpl;
+import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetView;
+import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetViewModel;
+import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
+import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,8 +20,15 @@ public class AddPetModule {
     }
 
     @Provides
-    AddPetViewModel providesAddPetViewModel(PetsRepository petsRepository) {
-        return new AddPetViewModel(mAddPetView, petsRepository);
+    @PerActivity
+    AddPetInteractor provideAddPetInteractor(PetsRepository petsRepository) {
+        return new AddPetInteractorImpl(petsRepository);
+    }
+
+    @Provides
+    @PerActivity
+    AddPetViewModel provideAddPetViewModel(AddPetInteractor addPetInteractor) {
+        return new AddPetViewModel(mAddPetView, addPetInteractor);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.mooveit.android.androidtemplateproject.addpet.di;
 
-import com.mooveit.android.androidtemplateproject.addpet.AddPetActivity;
+import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetActivity;
 import com.mooveit.android.androidtemplateproject.common.di.components.ApplicationComponent;
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
 

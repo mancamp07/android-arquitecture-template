@@ -1,22 +1,31 @@
 package com.mooveit.android.androidtemplateproject.common.mock.repository;
 
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
-import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
+
+import java.util.List;
+
+import rx.Single;
 
 public abstract class MockPetsRepositoryImpl implements PetsRepository {
+
     @Override
-    public void getPets(OnGetPetsCallback callback) {
+    public Single<List<Pet>> getPets() {
+        return null;
     }
 
     @Override
-    public void createPet(Pet pet, OnCreatePetCallback callback) {
+    public Single<Pet> createPet(Pet pet) {
+        return null;
     }
 
     @Override
-    public void updatePet(Pet pet, OnEditPetCallback callback) {
+    public Single<Pet> updatePet(Pet pet) {
+        return null;
     }
 
     @Override
-    public void deletePet(Pet pet, OnDeletePetCallback callback) {
+    public Single<Void> deletePet(Pet pet) {
+        return null;
     }
 }

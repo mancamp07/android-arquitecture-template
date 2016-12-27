@@ -1,7 +1,7 @@
 package com.mooveit.android.androidtemplateproject.common.mock.di.modules;
 
 import com.mooveit.android.androidtemplateproject.common.mock.api.MockPetStoreService;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
+import com.mooveit.android.androidtemplateproject.common.network.PetStoreService;
 
 import javax.inject.Singleton;
 

@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.home;
+package com.mooveit.android.androidtemplateproject.home.presenter;
 
 import android.graphics.Canvas;
 import android.support.design.widget.Snackbar;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 
 import java.util.List;
 
@@ -36,6 +36,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetVie
 
     public interface OnItemClickListener {
         void onItemClick(Pet pet);
+
         void onEditItemClick(Pet pet);
     }
 
@@ -44,11 +45,14 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetVie
     }
 
     public class PetViewHolder extends RecyclerView.ViewHolder
-        implements View.OnClickListener {
+            implements View.OnClickListener {
 
-        @BindView(R.id.card_view) CardView mCardView;
-        @BindView(R.id.pet_name) TextView mNameTV;
-        @BindView(R.id.pet_status) TextView mStatusTV;
+        @BindView(R.id.card_view)
+        CardView mCardView;
+        @BindView(R.id.pet_name)
+        TextView mNameTV;
+        @BindView(R.id.pet_status)
+        TextView mStatusTV;
 
         @OnClick(R.id.edit_button)
         public void onEditClicked() {
@@ -73,9 +77,9 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetVie
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new AdapterItemTouchHelperCallback(
-                ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.RIGHT
-        ));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new AdapterItemTouchHelperCallback(0, ItemTouchHelper.RIGHT)
+        );
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         mRecyclerView = recyclerView;
@@ -120,7 +124,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetVie
                 Snackbar.LENGTH_LONG
         ).setAction(R.string.undo_action, v -> {
             onItemRemovedUndoAction(itemPosition, removedPet);
-        }).setCallback(new Snackbar.Callback() {
+        }).addCallback(new Snackbar.Callback() {
             @Override
             public void onDismissed(Snackbar snackbar, int event) {
                 if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {

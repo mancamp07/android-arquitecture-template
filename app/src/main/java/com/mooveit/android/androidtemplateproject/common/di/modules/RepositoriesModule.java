@@ -1,8 +1,8 @@
 package com.mooveit.android.androidtemplateproject.common.di.modules;
 
-import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
-import com.mooveit.android.androidtemplateproject.model.repository.impl.PetsRepositoryImpl;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
+import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.common.model.repository.impl.PetsRepositoryImpl;
+import com.mooveit.android.androidtemplateproject.common.network.PetStoreService;
 
 import dagger.Module;
 import dagger.Provides;

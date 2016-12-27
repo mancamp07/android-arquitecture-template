@@ -1,7 +1,9 @@
 package com.mooveit.android.androidtemplateproject.editpet;
 
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
-import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetView;
+import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
