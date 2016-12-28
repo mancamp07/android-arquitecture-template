@@ -1,6 +1,6 @@
-package com.mooveit.android.androidtemplateproject.network;
+package com.mooveit.android.androidtemplateproject.common.network;
 
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 
 import java.util.List;
 

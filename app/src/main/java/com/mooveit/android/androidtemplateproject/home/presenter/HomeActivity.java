@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.home;
+package com.mooveit.android.androidtemplateproject.home.presenter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,14 +13,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.addpet.AddPetActivity;
+import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetActivity;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
+import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.ui.activity.BaseActivity;
 import com.mooveit.android.androidtemplateproject.common.ui.recyclerview.VerticalSpacingItemDecoration;
-import com.mooveit.android.androidtemplateproject.editpet.EditPetActivity;
+import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetActivity;
 import com.mooveit.android.androidtemplateproject.home.di.DaggerHomeComponent;
 import com.mooveit.android.androidtemplateproject.home.di.HomeComponent;
 import com.mooveit.android.androidtemplateproject.home.di.HomeModule;
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeActivity extends AppCompatActivity implements HomeView,
+public class HomeActivity extends BaseActivity implements HomeView,
         PetsListAdapter.OnItemClickListener,
         PetsListAdapter.OnItemDeletedListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView,
     int mItemVerticalSpacing;
 
     @Inject
-    HomeViewModel mViewModel;
+    HomeViewModel mHomeViewModel;
 
     PetsListAdapter mPetsListAdapter;
 
@@ -97,13 +97,14 @@ public class HomeActivity extends AppCompatActivity implements HomeView,
         setupRecyclerView();
         setupSwipeRefresh();
 
-        mViewModel.fetchPets();
+        mHomeViewModel.fetchPets();
     }
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mHomeViewModel.onViewDetached();
         mPetsListAdapter.unregisterAdapterDataObserver(mAdapterDataObserver);
     }
 
@@ -168,7 +169,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView,
 
     @Override
     public void onPetItemDeleted(Pet pet) {
-        mViewModel.onDeletePet(pet);
+        mHomeViewModel.onDeletePet(pet);
     }
 
     public void showEmptyView() {
@@ -211,6 +212,6 @@ public class HomeActivity extends AppCompatActivity implements HomeView,
 
     @Override
     public void onRefresh() {
-        mViewModel.fetchPets();
+        mHomeViewModel.fetchPets();
     }
 }

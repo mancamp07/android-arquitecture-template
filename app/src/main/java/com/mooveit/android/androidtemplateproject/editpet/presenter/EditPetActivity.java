@@ -1,19 +1,19 @@
-package com.mooveit.android.androidtemplateproject.editpet;
+package com.mooveit.android.androidtemplateproject.editpet.presenter;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
+import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.ui.activity.BaseActivity;
 import com.mooveit.android.androidtemplateproject.editpet.di.DaggerEditPetComponent;
 import com.mooveit.android.androidtemplateproject.editpet.di.EditPetComponent;
 import com.mooveit.android.androidtemplateproject.editpet.di.EditPetModule;
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditPetActivity extends AppCompatActivity implements EditPetView {
+public class EditPetActivity extends BaseActivity implements EditPetView {
 
     public static final String ARG_PET_EXTRAS = ":Extras:Pet:Parcelable";
 
@@ -61,6 +61,12 @@ public class EditPetActivity extends AppCompatActivity implements EditPetView {
         retrieveExtras();
 
         mPetNameET.setText(mPet.getName());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mEditPetViewModel.onViewDetached();
     }
 
     private void setupToolbar() {

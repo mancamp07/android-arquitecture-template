@@ -1,8 +1,11 @@
 package com.mooveit.android.androidtemplateproject.editpet.di;
 
-import com.mooveit.android.androidtemplateproject.editpet.EditPetView;
-import com.mooveit.android.androidtemplateproject.editpet.EditPetViewModel;
-import com.mooveit.android.androidtemplateproject.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
+import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractor;
+import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractorImpl;
+import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetView;
+import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetViewModel;
+import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,7 +20,14 @@ public class EditPetModule {
     }
 
     @Provides
-    EditPetViewModel providesEditPetViewModel(PetsRepository petsRepository) {
-        return new EditPetViewModel(mEditPetView, petsRepository);
+    @PerActivity
+    EditPetInteractor provideEditPetInteractor(PetsRepository petsRepository) {
+        return new EditPetInteractorImpl(petsRepository);
+    }
+
+    @Provides
+    @PerActivity
+    EditPetViewModel provideEditPetViewModel(EditPetInteractor editPetInteractor) {
+        return new EditPetViewModel(mEditPetView, editPetInteractor);
     }
 }

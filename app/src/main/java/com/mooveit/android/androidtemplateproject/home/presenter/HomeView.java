@@ -1,7 +1,7 @@
-package com.mooveit.android.androidtemplateproject.home;
+package com.mooveit.android.androidtemplateproject.home.presenter;
 
 import com.mooveit.android.androidtemplateproject.common.views.ProgressView;
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 
 import java.util.List;
 

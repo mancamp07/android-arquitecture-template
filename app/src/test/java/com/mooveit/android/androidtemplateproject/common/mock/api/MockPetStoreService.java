@@ -1,7 +1,7 @@
 package com.mooveit.android.androidtemplateproject.common.mock.api;
 
-import com.mooveit.android.androidtemplateproject.model.entities.Pet;
-import com.mooveit.android.androidtemplateproject.network.PetStoreService;
+import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.network.PetStoreService;
 
 import java.util.ArrayList;
 import java.util.List;
