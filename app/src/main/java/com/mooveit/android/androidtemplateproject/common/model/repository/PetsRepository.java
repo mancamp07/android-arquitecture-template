@@ -1,19 +1,9 @@
 package com.mooveit.android.androidtemplateproject.common.model.repository;
 
-import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
+import com.mooveit.android.androidtemplateproject.common.model.datasource.PetsDataSource;
 
-import java.util.List;
+public interface PetsRepository extends PetsDataSource {
 
-import rx.Single;
-
-public interface PetsRepository {
-
-    Single<List<Pet>> getPets();
-
-    Single<Pet> createPet(Pet pet);
-
-    Single<Pet> updatePet(Pet pet);
-
-    Single<Void> deletePet(Pet pet);
+    void invalidateCache();
 
 }

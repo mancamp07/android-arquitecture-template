@@ -58,7 +58,9 @@ public class HomeActivity extends BaseActivity implements HomeView,
     @Inject
     HomeViewModel mHomeViewModel;
 
-    PetsListAdapter mPetsListAdapter;
+    private PetsListAdapter mPetsListAdapter;
+
+    private Snackbar mSyncPetsSnackbar;
 
     private final RecyclerView.AdapterDataObserver mAdapterDataObserver = new RecyclerView.AdapterDataObserver() {
         @Override
@@ -97,9 +99,15 @@ public class HomeActivity extends BaseActivity implements HomeView,
         setupRecyclerView();
         setupSwipeRefresh();
 
-        mHomeViewModel.fetchPets();
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mHomeViewModel.fetchPets(false);
+    }
 
     @Override
     public void onDestroy() {
@@ -187,12 +195,18 @@ public class HomeActivity extends BaseActivity implements HomeView,
             mPetsListEmptyView.setVisibility(View.GONE);
             mPetsListRV.setVisibility(View.GONE);
             mProgressBar.show();
+        } else {
+            mSyncPetsSnackbar = Snackbar.make(mToolbar, R.string.synching_pets_message, Snackbar.LENGTH_INDEFINITE);
+            mSyncPetsSnackbar.show();
         }
     }
 
     public void hideProgress() {
         if (mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(false);
+        }
+        if (mSyncPetsSnackbar != null && mSyncPetsSnackbar.isShownOrQueued()) {
+            mSyncPetsSnackbar.dismiss();
         }
         mProgressBar.hide();
     }
@@ -212,6 +226,6 @@ public class HomeActivity extends BaseActivity implements HomeView,
 
     @Override
     public void onRefresh() {
-        mHomeViewModel.fetchPets();
+        mHomeViewModel.fetchPets(true);
     }
 }

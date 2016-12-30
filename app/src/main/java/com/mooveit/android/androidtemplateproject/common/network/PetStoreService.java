@@ -10,19 +10,19 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import rx.Single;
+import rx.Observable;
 
 public interface PetStoreService {
 
     @GET("pet/findByStatus?status=available")
-    Single<List<Pet>> getPets();
+    Observable<List<Pet>> getPets();
 
     @POST("pet")
-    Single<Pet> createPet(@Body Pet pet);
+    Observable<Pet> createPet(@Body Pet pet);
 
     @PUT("pet")
-    Single<Pet> updatePet(@Body Pet pet);
+    Observable<Pet> updatePet(@Body Pet pet);
 
     @DELETE("pet/{petId}")
-    Single<Void> deletePet(@Path("petId") long petId);
+    Observable<Void> deletePet(@Path("petId") long petId);
 }

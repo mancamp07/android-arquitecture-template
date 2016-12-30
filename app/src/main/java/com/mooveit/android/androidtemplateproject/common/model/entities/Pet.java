@@ -3,12 +3,14 @@ package com.mooveit.android.androidtemplateproject.common.model.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 import java.util.Locale;
 
 public class Pet implements Parcelable {
 
-    private long id;
+    private transient long databaseId;
 
     private String name;
 
@@ -18,14 +20,19 @@ public class Pet implements Parcelable {
 
     private String status;
 
-    public Pet() {}
+    private transient long updatedAt;
+
+    @SerializedName("id")
+    private long externalId;
 
     protected Pet(Parcel in) {
-        id = in.readLong();
+        databaseId = in.readLong();
         name = in.readString();
         photoUrls = in.readString();
         tags = in.createTypedArrayList(Tag.CREATOR);
         status = in.readString();
+        externalId = in.readLong();
+        updatedAt = in.readLong();
     }
 
     public static final Creator<Pet> CREATOR = new Creator<Pet>() {
@@ -40,12 +47,23 @@ public class Pet implements Parcelable {
         }
     };
 
+    public Pet() {
+    }
+
+    public Pet(long petId, String petName, String petStatus, long externalId, long updatedAt) {
+        this.databaseId = petId;
+        this.name = petName;
+        this.status = petStatus;
+        this.externalId = externalId;
+        this.updatedAt = updatedAt;
+    }
+
     public long getId() {
-        return id;
+        return databaseId;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.databaseId = id;
     }
 
     public String getName() {
@@ -80,18 +98,35 @@ public class Pet implements Parcelable {
         this.status = status;
     }
 
+    public long getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(long externalId) {
+        this.externalId = externalId;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
-        return String.format(Locale.getDefault(), "{id=%d, name=%s, photoUrls=%s, status=%s}",
-                id, name, photoUrls, status);
+        return String.format(Locale.getDefault(),
+                "{databaseId=%d, name=%s, photoUrls=%s, status=%s, externalId=%s, updatedAt=%s}",
+                databaseId, name, photoUrls, status, externalId, updatedAt);
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == this) return true;
         if (o instanceof Pet) {
-            Pet that = (Pet)o;
-            return id == that.id;
+            Pet that = (Pet) o;
+            return databaseId == that.databaseId;
         }
         return false;
     }
@@ -103,10 +138,12 @@ public class Pet implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(id);
+        dest.writeLong(databaseId);
         dest.writeString(name);
         dest.writeString(photoUrls);
         dest.writeTypedList(tags);
         dest.writeString(status);
+        dest.writeLong(externalId);
+        dest.writeLong(updatedAt);
     }
 }

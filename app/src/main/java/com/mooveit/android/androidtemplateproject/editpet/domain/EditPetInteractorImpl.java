@@ -4,7 +4,7 @@ import com.mooveit.android.androidtemplateproject.common.domain.interactors.Base
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 
-import rx.Single;
+import rx.Observable;
 
 public class EditPetInteractorImpl extends BaseInteractor implements EditPetInteractor {
 
@@ -15,7 +15,7 @@ public class EditPetInteractorImpl extends BaseInteractor implements EditPetInte
     }
 
     @Override
-    public Single<Pet> editPet(Pet pet) {
+    public Observable<Pet> editPet(Pet pet) {
         return petsRepository.updatePet(pet);
     }
 }

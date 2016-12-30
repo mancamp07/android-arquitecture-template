@@ -4,10 +4,10 @@ import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 
 import java.util.List;
 
-import rx.Single;
+import rx.Observable;
 
 public interface GetPetsInteractor {
 
-    Single<List<Pet>> getPets();
+    Observable<List<Pet>> getPets(boolean forceRefresh);
 
 }

@@ -1,7 +1,6 @@
 package com.mooveit.android.androidtemplateproject.home;
 
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
-import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractor;
 import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractor;
 import com.mooveit.android.androidtemplateproject.home.presenter.HomeView;
@@ -9,16 +8,12 @@ import com.mooveit.android.androidtemplateproject.home.presenter.HomeViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.Single;
-import rx.observers.TestSubscriber;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
@@ -54,7 +49,7 @@ public class HomeViewModelUnitTest {
     @Test
     public void getPets_successCallsShowPets() {
 
-        when(mGetPetsInteractor.getPets())
+        when(mGetPetsInteractor.getPets(forceRefresh))
                 .thenReturn(Single.just(mMockPets));
 
         mHomeViewModel.fetchPets();
@@ -107,7 +102,7 @@ public class HomeViewModelUnitTest {
 
 
     private Pet createMockPet() {
-        Pet mockPet = new Pet();
+        Pet mockPet = new Pet(petId, petName, petStatus, externalId, updatedAt);
         mockPet.setId(PET_ID);
 
         return mockPet;

@@ -1,8 +1,11 @@
 package com.mooveit.android.androidtemplateproject.common.di.modules;
 
+import com.mooveit.android.androidtemplateproject.common.model.datasource.local.LocalPetsDataSource;
+import com.mooveit.android.androidtemplateproject.common.model.datasource.remote.RemotePetsDataSource;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 import com.mooveit.android.androidtemplateproject.common.model.repository.impl.PetsRepositoryImpl;
-import com.mooveit.android.androidtemplateproject.common.network.PetStoreService;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -11,11 +14,9 @@ import dagger.Provides;
 public class RepositoriesModule {
 
     @Provides
-    protected PetsRepository providesPetsRepository(PetStoreService petStoreService) {
-        return getPetsRepository(petStoreService);
-    }
-
-    protected PetsRepository getPetsRepository(PetStoreService petStoreService) {
-        return new PetsRepositoryImpl(petStoreService);
+    @Singleton
+    PetsRepository providePetsRepository(LocalPetsDataSource localPetsDataSource,
+                                         RemotePetsDataSource remotePetsDataSource) {
+        return new PetsRepositoryImpl(localPetsDataSource, remotePetsDataSource);
     }
 }

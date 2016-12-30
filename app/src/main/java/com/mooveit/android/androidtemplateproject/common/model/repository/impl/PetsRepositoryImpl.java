@@ -1,48 +1,94 @@
 package com.mooveit.android.androidtemplateproject.common.model.repository.impl;
 
+import com.mooveit.android.androidtemplateproject.common.model.datasource.local.LocalPetsDataSource;
+import com.mooveit.android.androidtemplateproject.common.model.datasource.remote.RemotePetsDataSource;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
-import com.mooveit.android.androidtemplateproject.common.network.PetStoreService;
 
 import java.util.List;
 
-import rx.Single;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import rx.Observable;
+import rx.functions.Func1;
 
 public class PetsRepositoryImpl implements PetsRepository {
 
-    private final PetStoreService mPetStoreService;
+    private final LocalPetsDataSource mLocalDatasource;
+    private final RemotePetsDataSource mRemoteDatasource;
 
-    public PetsRepositoryImpl(PetStoreService petStoreService) {
-        this.mPetStoreService = petStoreService;
+    private boolean mCacheIsDirty = false;
+
+    public PetsRepositoryImpl(LocalPetsDataSource localDatasource,
+                              RemotePetsDataSource remoteDatasource) {
+        this.mLocalDatasource = localDatasource;
+        this.mRemoteDatasource = remoteDatasource;
     }
 
     @Override
-    public Single<List<Pet>> getPets() {
-        return mPetStoreService.getPets()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+    public Observable<List<Pet>> getPets() {
+        Observable<List<Pet>> remotePets = getAndSaveRemotePets();
+        Observable<List<Pet>> localPets = mLocalDatasource.getPets().take(1);
+
+        if (mCacheIsDirty) {
+            return remotePets;
+        } else {
+            return Observable.concat(localPets, remotePets)
+                    .first(pets -> !pets.isEmpty());
+        }
+    }
+
+    private Observable<List<Pet>> getAndSaveRemotePets() {
+        return mRemoteDatasource.getPets()
+                .flatMap(new Func1<List<Pet>, Observable<List<Pet>>>() {
+                    @Override
+                    public Observable<List<Pet>> call(List<Pet> pets) {
+                        return Observable.from(pets)
+                                .doOnSubscribe(mLocalDatasource::deleteAll)
+                                .flatMap(new Func1<Pet, Observable<Pet>>() {
+                                    @Override
+                                    public Observable<Pet> call(Pet pet) {
+                                        return mLocalDatasource.createPet(pet);
+                                    }
+                                })
+                                .toList();
+                    }
+                })
+                .doOnCompleted(() -> mCacheIsDirty = false);
     }
 
     @Override
-    public Single<Pet> createPet(Pet pet) {
-        return mPetStoreService.createPet(pet)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+    public Observable<Pet> createPet(Pet pet) {
+        return Observable.concat(
+                mLocalDatasource.createPet(pet),
+                mRemoteDatasource.createPet(pet)
+                        .flatMap(new Func1<Pet, Observable<Pet>>() {
+                            @Override
+                            public Observable<Pet> call(Pet pet) {
+                                return mLocalDatasource.updatePet(pet);
+                            }
+                        }));
     }
 
     @Override
-    public Single<Pet> updatePet(Pet pet) {
-        return mPetStoreService.updatePet(pet)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+    public Observable<Pet> updatePet(Pet pet) {
+        return Observable.concat(
+                mLocalDatasource.updatePet(pet),
+                mRemoteDatasource.updatePet(pet));
     }
 
     @Override
-    public Single<Void> deletePet(Pet pet) {
-        return mPetStoreService.deletePet(pet.getId())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+    public Observable<Void> deletePet(Pet pet) {
+        return Observable.concat(
+                mLocalDatasource.deletePet(pet),
+                mRemoteDatasource.deletePet(pet));
+    }
+
+    @Override
+    public Observable<Void> deleteAll() {
+        return mLocalDatasource.deleteAll();
+    }
+
+    @Override
+    public void invalidateCache() {
+        mCacheIsDirty = true;
     }
 }
