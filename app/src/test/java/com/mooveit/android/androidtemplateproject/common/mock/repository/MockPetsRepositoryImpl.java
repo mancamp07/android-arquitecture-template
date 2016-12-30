@@ -5,27 +5,28 @@ import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRe
 
 import java.util.List;
 
+import rx.Observable;
 import rx.Single;
 
 public abstract class MockPetsRepositoryImpl implements PetsRepository {
 
     @Override
-    public Single<List<Pet>> getPets() {
+    public Observable<List<Pet>> getPets() {
         return null;
     }
 
     @Override
-    public Single<Pet> createPet(Pet pet) {
+    public Observable<Pet> createPet(Pet pet) {
         return null;
     }
 
     @Override
-    public Single<Pet> updatePet(Pet pet) {
+    public Observable<Pet> updatePet(Pet pet) {
         return null;
     }
 
     @Override
-    public Single<Void> deletePet(Pet pet) {
+    public Observable<Void> deletePet(Pet pet) {
         return null;
     }
 }

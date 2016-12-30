@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
+        android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="0dp"
         app:cardUseCompatPadding="false">
 
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/activity_vertical_margin"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackground"
                 android:tint="@color/colorPrimary"
                 app:srcCompat="@drawable/ic_edit_white" />
 

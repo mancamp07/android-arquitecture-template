@@ -19,12 +19,12 @@ public class MockPetStoreService implements PetStoreService {
 
     @Override
     public Single<Pet> createPet(@Body Pet pet) {
-        return Single.just(new Pet());
+        return Single.just(new Pet(petId, petName, petStatus, externalId, updatedAt));
     }
 
     @Override
     public Single<Pet> updatePet(@Body Pet pet) {
-        return Single.just(new Pet());
+        return Single.just(new Pet(petId, petName, petStatus, externalId, updatedAt));
     }
 
     @Override

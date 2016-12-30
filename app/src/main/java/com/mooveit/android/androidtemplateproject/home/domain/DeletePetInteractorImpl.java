@@ -3,6 +3,7 @@ package com.mooveit.android.androidtemplateproject.home.domain;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 
+import rx.Observable;
 import rx.Single;
 
 public class DeletePetInteractorImpl implements DeletePetInteractor {
@@ -14,7 +15,7 @@ public class DeletePetInteractorImpl implements DeletePetInteractor {
     }
 
     @Override
-    public Single<Void> deletePet(Pet pet) {
+    public Observable<Void> deletePet(Pet pet) {
         return mPetsRepository.deletePet(pet);
     }
 }

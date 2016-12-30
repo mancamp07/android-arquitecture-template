@@ -8,6 +8,9 @@ import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractor;
 import java.util.List;
 
 import rx.SingleSubscriber;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class HomeViewModel extends ViewModel {
 
@@ -23,16 +26,17 @@ public class HomeViewModel extends ViewModel {
         this.mDeletePetInteractor = deletePetInteractor;
     }
 
-    public void fetchPets() {
+    public void fetchPets(boolean forceRefresh) {
         mHomeView.showProgress();
 
         subscribe(
-                mGetPetsInteractor.getPets()
-                        .subscribe(new SingleSubscriber<List<Pet>>() {
+                mGetPetsInteractor.getPets(forceRefresh)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<List<Pet>>() {
+
                             @Override
-                            public void onSuccess(List<Pet> pets) {
-                                mHomeView.hideProgress();
-                                mHomeView.showPets(pets);
+                            public void onCompleted() {
                             }
 
                             @Override
@@ -40,6 +44,12 @@ public class HomeViewModel extends ViewModel {
                                 mHomeView.hideProgress();
                                 mHomeView.showError(error.getMessage());
                                 mHomeView.showPets();
+                            }
+
+                            @Override
+                            public void onNext(List<Pet> pets) {
+                                mHomeView.hideProgress();
+                                mHomeView.showPets(pets);
                             }
                         })
         );
@@ -48,15 +58,23 @@ public class HomeViewModel extends ViewModel {
     public void onDeletePet(Pet pet) {
         subscribe(
                 mDeletePetInteractor.deletePet(pet)
-                        .subscribe(new SingleSubscriber<Void>() {
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<Void>() {
+
                             @Override
-                            public void onSuccess(Void aVoid) {
-                                mHomeView.showPets();
+                            public void onCompleted() {
+
                             }
 
                             @Override
                             public void onError(Throwable error) {
                                 mHomeView.showError(error.getMessage());
+                            }
+
+                            @Override
+                            public void onNext(Void aVoid) {
+                                mHomeView.showPets();
                             }
                         })
         );

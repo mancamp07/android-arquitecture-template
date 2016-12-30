@@ -39,6 +39,7 @@ project.ext {
     rxJavaVersion = "1.2.4"
     butterKnifeVersion = "8.4.0"
     timberVersion = "4.1.2"
+    sqlBriteVersion = "1.1.1"
 
     // Crashlytics
     fabricPluginVersion = "1.+"

@@ -5,6 +5,9 @@ import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.presenter.ViewModel;
 
 import rx.SingleSubscriber;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class AddPetViewModel extends ViewModel {
 
@@ -25,17 +28,24 @@ public class AddPetViewModel extends ViewModel {
 
         subscribe(
                 mAddPetInteractor.addPet(pet)
-                        .subscribe(new SingleSubscriber<Pet>() {
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<Pet>() {
+
                             @Override
-                            public void onSuccess(Pet pet) {
-                                mAddPetView.hideProgress();
-                                mAddPetView.onPetCreated();
+                            public void onCompleted() {
                             }
 
                             @Override
                             public void onError(Throwable error) {
                                 mAddPetView.hideProgress();
                                 mAddPetView.showError(error.getMessage());
+                            }
+
+                            @Override
+                            public void onNext(Pet pet) {
+                                mAddPetView.hideProgress();
+                                mAddPetView.onPetCreated();
                             }
                         })
         );
