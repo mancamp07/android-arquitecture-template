@@ -22,30 +22,29 @@ import butterknife.OnClick;
 public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetViewHolder> {
 
     private RecyclerView mRecyclerView;
-    private final OnItemClickListener mOnItemClickListener;
+    private final OnPetItemClickListener mOnPetItemClickListener;
     private final OnItemDeletedListener mOnItemDeletedListener;
     private final List<Pet> mPets;
 
     public PetsListAdapter(List<Pet> pets,
-                           OnItemClickListener onItemClickListener,
+                           OnPetItemClickListener onPetItemClickListener,
                            OnItemDeletedListener onItemDeletedListener) {
         this.mPets = pets;
-        this.mOnItemClickListener = onItemClickListener;
+        this.mOnPetItemClickListener = onPetItemClickListener;
         this.mOnItemDeletedListener = onItemDeletedListener;
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(Pet pet);
+    public interface OnPetItemClickListener {
+        void onPetItemClick(Pet pet);
 
-        void onEditItemClick(Pet pet);
+        void onEditPetItemClick(Pet pet);
     }
 
     public interface OnItemDeletedListener {
         void onPetItemDeleted(Pet pet);
     }
 
-    public class PetViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+    class PetViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.card_view)
         CardView mCardView;
@@ -55,23 +54,20 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetVie
         TextView mStatusTV;
 
         @OnClick(R.id.edit_button)
-        public void onEditClicked() {
+        void onEditClicked() {
             Pet pet = mPets.get(getAdapterPosition());
-            mOnItemClickListener.onEditItemClick(pet);
+            mOnPetItemClickListener.onEditPetItemClick(pet);
         }
 
-        public PetViewHolder(View itemView) {
+        @OnClick(R.id.card_view)
+        void onCardClicked() {
+            Pet pet = mPets.get(getAdapterPosition());
+            mOnPetItemClickListener.onPetItemClick(pet);
+        }
+
+        PetViewHolder(View itemView) {
             super(itemView);
-
             ButterKnife.bind(this, itemView);
-
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            Pet pet = mPets.get(getAdapterPosition());
-            mOnItemClickListener.onItemClick(pet);
         }
     }
 
