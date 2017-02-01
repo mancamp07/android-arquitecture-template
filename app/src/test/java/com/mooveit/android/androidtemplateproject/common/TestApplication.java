@@ -4,7 +4,6 @@ import com.mooveit.android.androidtemplateproject.common.di.components.Applicati
 import com.mooveit.android.androidtemplateproject.common.di.modules.ApplicationModule;
 import com.mooveit.android.androidtemplateproject.common.mock.di.components.DaggerMockApplicationComponent;
 import com.mooveit.android.androidtemplateproject.common.mock.di.components.MockApplicationComponent;
-import com.mooveit.android.androidtemplateproject.common.mock.di.modules.MockNetworkModule;
 import com.mooveit.android.androidtemplateproject.common.mock.di.modules.MockRepositoriesModule;
 
 public class TestApplication extends AndroidTemplateApplication {
