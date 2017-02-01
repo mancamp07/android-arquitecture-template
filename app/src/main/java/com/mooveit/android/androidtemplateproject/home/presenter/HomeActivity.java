@@ -145,6 +145,8 @@ public class HomeActivity extends BaseActivity implements HomeView,
 
     @Override
     public void showPet(Pet pet) {
+        Intent intent = PetDetailsActivity.startActivityIntent(this, pet.getExternalId());
+        startActivity(intent);
     }
 
     @Override

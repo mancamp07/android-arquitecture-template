@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".petdetails.PetDetailsActivity"
+            android:name=".petdetails.presenter.PetDetailsActivity"
             android:label="@string/title_activity_pet_details"
             android:parentActivityName=".home.presenter.HomeActivity"
             android:theme="@style/AppTheme">
@@ -48,11 +48,11 @@
         <activity
             android:name=".editpet.presenter.EditPetActivity"
             android:label="@string/title_activity_edit_pet"
-            android:parentActivityName=".petdetails.PetDetailsActivity"
+            android:parentActivityName=".petdetails.presenter.PetDetailsActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".petdetails.PetDetailsActivity" />
+                android:value=".petdetails.presenter.PetDetailsActivity" />
         </activity>
     </application>
 

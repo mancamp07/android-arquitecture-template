@@ -86,4 +86,12 @@ public class LocalPetsDataSource implements PetsDataSource {
         Log.d(TAG, "Deleted rows = " + deletedRows);
         return Observable.just(null);
     }
+
+    @Override
+    public Observable<Pet> getPet(long petId) {
+        String sql = "SELECT * FROM " + PetEntry.TABLE_NAME
+                + " WHERE " + PetEntry.COLUMN_NAME_EXTERNAL_ID + " = ?";
+        return mDatabase.createQuery(PetEntry.TABLE_NAME, sql, String.valueOf(petId))
+                .mapToOne(mMapper);
+    }
 }
