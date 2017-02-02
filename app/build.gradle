@@ -93,7 +93,9 @@ dependencies {
     testCompile "org.robolectric:robolectric:$robolectricVersion"
     testCompile "org.robolectric:shadows-support-v4:$robolectricVersion"
     testCompile "org.mockito:mockito-all:$mockitoVersion"
+    testCompile 'org.khronos:opengl-api:gl1.1-android-2.1_r1'
     testCompile "org.hamcrest:hamcrest-all:$hamcrestVersion"
     testApt "com.google.dagger:dagger-compiler:$daggerVersion"
+    testApt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
 }
