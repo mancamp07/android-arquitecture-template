@@ -38,11 +38,13 @@ public class PetDetailsViewModel extends ViewModel {
 
                             @Override
                             public void onError(Throwable e) {
+                                mPetDetailsView.hideProgress();
                                 mPetDetailsView.showError(e.getMessage());
                             }
 
                             @Override
                             public void onNext(Pet pet) {
+                                mPetDetailsView.hideProgress();
                                 mPetDetailsView.showPet(pet);
                             }
                         })

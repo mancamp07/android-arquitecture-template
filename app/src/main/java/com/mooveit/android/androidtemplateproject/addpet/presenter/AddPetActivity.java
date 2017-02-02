@@ -98,7 +98,7 @@ public class AddPetActivity extends BaseActivity implements AddPetView {
     }
 
     @Override
-    public void onPetCreated() {
+    public void showPetCreated() {
 
         Snackbar.make(mPetNameET, R.string.created_pet_success, Snackbar.LENGTH_SHORT)
                 .addCallback(new Snackbar.Callback() {

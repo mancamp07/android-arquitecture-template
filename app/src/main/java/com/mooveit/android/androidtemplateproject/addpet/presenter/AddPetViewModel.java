@@ -47,7 +47,7 @@ public class AddPetViewModel extends ViewModel {
                             @Override
                             public void onNext(Pet pet) {
                                 mAddPetView.hideProgress();
-                                mAddPetView.onPetCreated();
+                                mAddPetView.showPetCreated();
                             }
                         })
         );

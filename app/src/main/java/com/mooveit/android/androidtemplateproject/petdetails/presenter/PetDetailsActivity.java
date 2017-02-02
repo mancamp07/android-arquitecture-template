@@ -95,4 +95,14 @@ public class PetDetailsActivity extends BaseActivity implements PetDetailsView {
     public void showError(String message) {
 
     }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
 }
