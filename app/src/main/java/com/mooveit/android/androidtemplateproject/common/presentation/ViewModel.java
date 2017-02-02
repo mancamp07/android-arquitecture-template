@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.common.presenter;
+package com.mooveit.android.androidtemplateproject.common.presentation;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;

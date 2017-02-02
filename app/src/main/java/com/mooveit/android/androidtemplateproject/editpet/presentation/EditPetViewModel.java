@@ -1,14 +1,11 @@
-package com.mooveit.android.androidtemplateproject.editpet.presenter;
+package com.mooveit.android.androidtemplateproject.editpet.presentation;
 
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
-import com.mooveit.android.androidtemplateproject.common.presenter.ViewModel;
+import com.mooveit.android.androidtemplateproject.common.presentation.ViewModel;
 import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractor;
 
-import rx.SingleSubscriber;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class EditPetViewModel extends ViewModel {
 

@@ -1,5 +1,5 @@
 
-package com.mooveit.android.androidtemplateproject.editpet.presenter;
+package com.mooveit.android.androidtemplateproject.editpet.presentation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +22,6 @@ import javax.inject.Inject;
 
 import butterknife.BindString;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EditPetActivity extends BaseActivity implements EditPetView {

@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.editpet.presenter;
+package com.mooveit.android.androidtemplateproject.editpet.presentation;
 
 import com.mooveit.android.androidtemplateproject.common.views.ProgressView;
 

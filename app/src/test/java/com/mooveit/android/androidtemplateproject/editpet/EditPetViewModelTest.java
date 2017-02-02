@@ -3,8 +3,8 @@ package com.mooveit.android.androidtemplateproject.editpet;
 import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractor;
-import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetView;
-import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetViewModel;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetView;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetViewModel;
 
 import org.junit.Before;
 import org.mockito.Mock;

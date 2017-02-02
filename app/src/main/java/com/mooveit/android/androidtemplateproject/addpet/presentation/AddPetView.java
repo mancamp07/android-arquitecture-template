@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.addpet.presenter;
+package com.mooveit.android.androidtemplateproject.addpet.presentation;
 
 public interface AddPetView {
 

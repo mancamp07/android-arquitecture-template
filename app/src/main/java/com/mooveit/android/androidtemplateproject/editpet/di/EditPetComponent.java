@@ -2,7 +2,7 @@ package com.mooveit.android.androidtemplateproject.editpet.di;
 
 import com.mooveit.android.androidtemplateproject.common.di.components.ApplicationComponent;
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
-import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetActivity;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetActivity;
 
 import dagger.Component;
 

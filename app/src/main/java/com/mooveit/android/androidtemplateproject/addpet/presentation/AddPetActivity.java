@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.addpet.presenter;
+package com.mooveit.android.androidtemplateproject.addpet.presentation;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;

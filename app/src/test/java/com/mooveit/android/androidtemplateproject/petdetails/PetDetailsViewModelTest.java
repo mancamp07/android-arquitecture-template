@@ -4,8 +4,8 @@ package com.mooveit.android.androidtemplateproject.petdetails;
 import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.petdetails.domain.GetPetDetailsInteractor;
-import com.mooveit.android.androidtemplateproject.petdetails.presenter.PetDetailsView;
-import com.mooveit.android.androidtemplateproject.petdetails.presenter.PetDetailsViewModel;
+import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsView;
+import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsViewModel;
 
 import org.junit.Before;
 import org.junit.Test;

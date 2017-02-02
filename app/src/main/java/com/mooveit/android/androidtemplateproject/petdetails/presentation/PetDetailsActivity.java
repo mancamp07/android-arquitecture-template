@@ -1,4 +1,4 @@
-package com.mooveit.android.androidtemplateproject.petdetails.presenter;
+package com.mooveit.android.androidtemplateproject.petdetails.presentation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +18,6 @@ import com.mooveit.android.androidtemplateproject.petdetails.di.PetDetailsModule
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 public class PetDetailsActivity extends BaseActivity implements PetDetailsView {
 
