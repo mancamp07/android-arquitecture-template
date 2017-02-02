@@ -40,4 +40,9 @@ public class RemotePetsDataSource implements PetsDataSource {
     public Observable<Void> deleteAll() {
         return null;
     }
+
+    @Override
+    public Observable<Pet> getPet(long petId) {
+        return mPetStoreService.getPet(petId);
+    }
 }

@@ -3,8 +3,8 @@ package com.mooveit.android.androidtemplateproject.addpet.presenter;
 import com.mooveit.android.androidtemplateproject.addpet.domain.AddPetInteractor;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.presenter.ViewModel;
+import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 
-import rx.SingleSubscriber;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -14,11 +14,13 @@ public class AddPetViewModel extends ViewModel {
     private static final String TAG = AddPetViewModel.class.getSimpleName();
 
     private final AddPetView mAddPetView;
+    private final SchedulerProvider mSchedulerProvider;
     private final AddPetInteractor mAddPetInteractor;
 
     public AddPetViewModel(AddPetView addPetView,
-                           AddPetInteractor addPetInteractor) {
+                           SchedulerProvider schedulerProvider, AddPetInteractor addPetInteractor) {
         this.mAddPetView = addPetView;
+        this.mSchedulerProvider = schedulerProvider;
         this.mAddPetInteractor = addPetInteractor;
     }
 
@@ -28,8 +30,8 @@ public class AddPetViewModel extends ViewModel {
 
         subscribe(
                 mAddPetInteractor.addPet(pet)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(mSchedulerProvider.io())
+                        .observeOn(mSchedulerProvider.main())
                         .subscribe(new Subscriber<Pet>() {
 
                             @Override
@@ -45,7 +47,7 @@ public class AddPetViewModel extends ViewModel {
                             @Override
                             public void onNext(Pet pet) {
                                 mAddPetView.hideProgress();
-                                mAddPetView.onPetCreated();
+                                mAddPetView.showPetCreated();
                             }
                         })
         );

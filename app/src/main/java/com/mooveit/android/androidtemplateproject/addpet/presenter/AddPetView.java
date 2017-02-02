@@ -2,7 +2,7 @@ package com.mooveit.android.androidtemplateproject.addpet.presenter;
 
 public interface AddPetView {
 
-    void onPetCreated();
+    void showPetCreated();
 
     void hideProgress();
 

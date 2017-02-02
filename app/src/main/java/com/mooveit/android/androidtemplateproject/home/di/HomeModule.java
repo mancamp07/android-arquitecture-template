@@ -1,6 +1,7 @@
 package com.mooveit.android.androidtemplateproject.home.di;
 
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
+import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractor;
 import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractorImpl;
 import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractor;
@@ -35,8 +36,10 @@ public class HomeModule {
 
     @Provides
     @PerActivity
-    HomeViewModel provideHomeViewModel(GetPetsInteractor getPetsInteractor,
+    HomeViewModel provideHomeViewModel(SchedulerProvider schedulerProvider,
+                                       GetPetsInteractor getPetsInteractor,
                                        DeletePetInteractor deletePetInteractor) {
-        return new HomeViewModel(mHomeView, getPetsInteractor, deletePetInteractor);
+        return new HomeViewModel(mHomeView, schedulerProvider,
+                getPetsInteractor, deletePetInteractor);
     }
 }

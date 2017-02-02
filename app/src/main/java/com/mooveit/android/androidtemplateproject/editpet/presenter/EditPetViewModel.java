@@ -2,6 +2,7 @@ package com.mooveit.android.androidtemplateproject.editpet.presenter;
 
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.presenter.ViewModel;
+import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractor;
 
 import rx.SingleSubscriber;
@@ -12,10 +13,14 @@ import rx.schedulers.Schedulers;
 public class EditPetViewModel extends ViewModel {
 
     private final EditPetView mEditPetView;
+    private final SchedulerProvider mSchedulerProvider;
     private final EditPetInteractor mEditPetInteractor;
 
-    public EditPetViewModel(EditPetView editPetView, EditPetInteractor editPetInteractor) {
+    public EditPetViewModel(EditPetView editPetView,
+                            SchedulerProvider schedulerProvider,
+                            EditPetInteractor editPetInteractor) {
         this.mEditPetView = editPetView;
+        this.mSchedulerProvider = schedulerProvider;
         this.mEditPetInteractor = editPetInteractor;
     }
 
@@ -24,8 +29,8 @@ public class EditPetViewModel extends ViewModel {
 
         subscribe(
                 mEditPetInteractor.editPet(pet)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(mSchedulerProvider.io())
+                        .observeOn(mSchedulerProvider.main())
                         .subscribe(new Subscriber<Pet>() {
 
                             @Override

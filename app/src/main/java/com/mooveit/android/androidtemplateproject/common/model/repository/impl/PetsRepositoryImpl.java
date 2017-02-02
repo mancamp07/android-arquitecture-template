@@ -88,6 +88,11 @@ public class PetsRepositoryImpl implements PetsRepository {
     }
 
     @Override
+    public Observable<Pet> getPet(long petId) {
+        return mLocalDatasource.getPet(petId).take(1);
+    }
+
+    @Override
     public void invalidateCache() {
         mCacheIsDirty = true;
     }

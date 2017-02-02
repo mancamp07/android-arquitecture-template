@@ -22,6 +22,7 @@ import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetActiv
 import com.mooveit.android.androidtemplateproject.home.di.DaggerHomeComponent;
 import com.mooveit.android.androidtemplateproject.home.di.HomeComponent;
 import com.mooveit.android.androidtemplateproject.home.di.HomeModule;
+import com.mooveit.android.androidtemplateproject.petdetails.presenter.PetDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeActivity extends BaseActivity implements HomeView,
-        PetsListAdapter.OnItemClickListener,
+        PetsListAdapter.OnPetItemClickListener,
         PetsListAdapter.OnItemDeletedListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.toolbar)
@@ -98,7 +99,6 @@ public class HomeActivity extends BaseActivity implements HomeView,
 
         setupRecyclerView();
         setupSwipeRefresh();
-
     }
 
 
@@ -145,12 +145,13 @@ public class HomeActivity extends BaseActivity implements HomeView,
 
     @Override
     public void showPet(Pet pet) {
+        Intent intent = PetDetailsActivity.startActivityIntent(this, pet.getExternalId());
+        startActivity(intent);
     }
 
     @Override
     public void showEditPet(Pet pet) {
-        Intent intent = new Intent(this, EditPetActivity.class);
-        intent.putExtra(EditPetActivity.ARG_PET_EXTRAS, pet);
+        Intent intent = EditPetActivity.startActivityIntent(this, pet);
         startActivity(intent);
     }
 
@@ -166,12 +167,12 @@ public class HomeActivity extends BaseActivity implements HomeView,
     }
 
     @Override
-    public void onItemClick(Pet pet) {
+    public void onPetItemClick(Pet pet) {
         showPet(pet);
     }
 
     @Override
-    public void onEditItemClick(Pet pet) {
+    public void onEditPetItemClick(Pet pet) {
         showEditPet(pet);
     }
 

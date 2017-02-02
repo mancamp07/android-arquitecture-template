@@ -1,5 +1,6 @@
 package com.mooveit.android.androidtemplateproject.common;
 
+import android.content.Intent;
 import android.os.Build;
 
 import com.mooveit.android.androidtemplateproject.BuildConfig;
@@ -18,12 +19,16 @@ import static org.robolectric.Shadows.shadowOf;
         application = TestApplication.class,
         constants = BuildConfig.class,
         sdk = Build.VERSION_CODES.M)
-public abstract class BaseRobolectricUnitTest {
+public abstract class BaseRobolectricTest {
 
     protected TestApplication getApplication() {
         return (TestApplication) RuntimeEnvironment.application;
     }
 
+    protected Intent getNextStartedActivityIntent() {
+        ShadowApplication application = shadowOf(RuntimeEnvironment.application);
+        return application.getNextStartedActivity();
+    }
 
     protected String getNextStartedActivityClassName() {
         ShadowApplication application = shadowOf(RuntimeEnvironment.application);

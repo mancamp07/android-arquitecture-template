@@ -1,6 +1,8 @@
 
 package com.mooveit.android.androidtemplateproject.editpet.presenter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -27,7 +29,6 @@ public class EditPetActivity extends BaseActivity implements EditPetView {
 
     public static final String ARG_PET_EXTRAS = ":Extras:Pet:Parcelable";
 
-    private EditPetComponent mEditPetComponent;
     private Pet mPet;
     private Snackbar mSnackbar;
 
@@ -43,20 +44,24 @@ public class EditPetActivity extends BaseActivity implements EditPetView {
     @Inject
     EditPetViewModel mEditPetViewModel;
 
+    public static Intent startActivityIntent(Context context, Pet pet) {
+        Intent intent = new Intent(context, EditPetActivity.class);
+        intent.putExtra(ARG_PET_EXTRAS, pet);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_pet);
-        ButterKnife.bind(this);
 
-        mEditPetComponent = DaggerEditPetComponent.builder()
+        EditPetComponent editPetComponent = DaggerEditPetComponent.builder()
                 .applicationComponent(AndroidTemplateApplication.getInstance(this)
                         .getApplicationComponent())
                 .editPetModule(new EditPetModule(this))
                 .build();
 
-        mEditPetComponent.inject(this);
+        editPetComponent.inject(this);
 
         setupToolbar();
         retrieveExtras();

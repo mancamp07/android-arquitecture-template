@@ -18,4 +18,6 @@ public interface PetsDataSource {
     Observable<Void> deletePet(Pet pet);
 
     Observable<Void> deleteAll();
+
+    Observable<Pet> getPet(long petId);
 }

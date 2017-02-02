@@ -2,6 +2,7 @@ package com.mooveit.android.androidtemplateproject.home.presenter;
 
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.presenter.ViewModel;
+import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractor;
 import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractor;
 
@@ -15,13 +16,16 @@ import rx.schedulers.Schedulers;
 public class HomeViewModel extends ViewModel {
 
     private final HomeView mHomeView;
+    private final SchedulerProvider mSchedulerProvider;
     private final GetPetsInteractor mGetPetsInteractor;
     private final DeletePetInteractor mDeletePetInteractor;
 
     public HomeViewModel(HomeView homeView,
+                         SchedulerProvider schedulerProvider,
                          GetPetsInteractor getPetsInteractor,
                          DeletePetInteractor deletePetInteractor) {
         this.mHomeView = homeView;
+        this.mSchedulerProvider = schedulerProvider;
         this.mGetPetsInteractor = getPetsInteractor;
         this.mDeletePetInteractor = deletePetInteractor;
     }
@@ -31,8 +35,8 @@ public class HomeViewModel extends ViewModel {
 
         subscribe(
                 mGetPetsInteractor.getPets(forceRefresh)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(mSchedulerProvider.io())
+                        .observeOn(mSchedulerProvider.main())
                         .subscribe(new Subscriber<List<Pet>>() {
 
                             @Override
@@ -58,8 +62,8 @@ public class HomeViewModel extends ViewModel {
     public void onDeletePet(Pet pet) {
         subscribe(
                 mDeletePetInteractor.deletePet(pet)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(mSchedulerProvider.io())
+                        .observeOn(mSchedulerProvider.main())
                         .subscribe(new Subscriber<Void>() {
 
                             @Override

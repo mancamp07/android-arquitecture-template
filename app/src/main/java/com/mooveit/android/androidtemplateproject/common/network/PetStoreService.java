@@ -25,4 +25,7 @@ public interface PetStoreService {
 
     @DELETE("pet/{petId}")
     Observable<Void> deletePet(@Path("petId") long petId);
+
+    @GET("pet/{petId}")
+    Observable<Pet> getPet(long petId);
 }
