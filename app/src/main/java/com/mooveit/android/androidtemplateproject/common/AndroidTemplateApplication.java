@@ -43,8 +43,4 @@ public class AndroidTemplateApplication extends Application {
     public static AndroidTemplateApplication getInstance(Context context) {
         return (AndroidTemplateApplication) context.getApplicationContext();
     }
-
-    public RepositoriesModule getRepositoriesModule() {
-        return new RepositoriesModule();
-    }
 }
