@@ -6,10 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetActivity;
+import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetActivity;
 import com.mooveit.android.androidtemplateproject.common.BaseRobolectricTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
-import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetActivity;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetActivity;
 import com.mooveit.android.androidtemplateproject.home.presenter.HomeActivity;
 import com.mooveit.android.androidtemplateproject.home.presenter.PetsListAdapter;
 

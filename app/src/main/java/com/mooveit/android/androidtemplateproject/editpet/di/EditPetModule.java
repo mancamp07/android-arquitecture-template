@@ -4,8 +4,8 @@ import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
 import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractor;
 import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractorImpl;
-import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetView;
-import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetViewModel;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetView;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetViewModel;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 
 import dagger.Module;

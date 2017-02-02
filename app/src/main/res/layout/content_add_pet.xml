@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".addpet.presenter.AddPetActivity"
+    tools:context=".addpet.presentation.AddPetActivity"
     tools:showIn="@layout/activity_add_pet">
 
     <android.support.design.widget.TextInputLayout

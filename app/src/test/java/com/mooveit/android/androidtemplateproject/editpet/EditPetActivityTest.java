@@ -9,7 +9,7 @@ import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.common.BaseRobolectricTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.robolectric.shadows.ShadowSnackbar;
-import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetActivity;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetActivity;
 
 import org.junit.Before;
 import org.junit.Ignore;

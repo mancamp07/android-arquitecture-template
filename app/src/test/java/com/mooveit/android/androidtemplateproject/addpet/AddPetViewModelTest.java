@@ -1,8 +1,8 @@
 package com.mooveit.android.androidtemplateproject.addpet;
 
 import com.mooveit.android.androidtemplateproject.addpet.domain.AddPetInteractor;
-import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetView;
-import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetViewModel;
+import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetView;
+import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetViewModel;
 import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 

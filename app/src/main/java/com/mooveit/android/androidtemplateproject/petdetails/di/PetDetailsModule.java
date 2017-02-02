@@ -5,8 +5,8 @@ import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRe
 import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.petdetails.domain.GetPetDetailsInteractor;
 import com.mooveit.android.androidtemplateproject.petdetails.domain.GetPetDetailsInteractorImpl;
-import com.mooveit.android.androidtemplateproject.petdetails.presenter.PetDetailsView;
-import com.mooveit.android.androidtemplateproject.petdetails.presenter.PetDetailsViewModel;
+import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsView;
+import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsViewModel;
 
 import dagger.Module;
 import dagger.Provides;

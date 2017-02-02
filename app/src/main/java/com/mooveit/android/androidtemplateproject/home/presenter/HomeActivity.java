@@ -13,16 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.mooveit.android.androidtemplateproject.R;
-import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetActivity;
+import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetActivity;
 import com.mooveit.android.androidtemplateproject.common.AndroidTemplateApplication;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.ui.activity.BaseActivity;
 import com.mooveit.android.androidtemplateproject.common.ui.recyclerview.VerticalSpacingItemDecoration;
-import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetActivity;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetActivity;
 import com.mooveit.android.androidtemplateproject.home.di.DaggerHomeComponent;
 import com.mooveit.android.androidtemplateproject.home.di.HomeComponent;
 import com.mooveit.android.androidtemplateproject.home.di.HomeModule;
-import com.mooveit.android.androidtemplateproject.petdetails.presenter.PetDetailsActivity;
+import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
