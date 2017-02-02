@@ -111,6 +111,10 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.PetVie
         notifyDataSetChanged();
     }
 
+    public List<Pet> getPets() {
+        return mPets;
+    }
+
     public void onItemRemoved(final RecyclerView.ViewHolder viewHolder) {
         final int itemPosition = viewHolder.getAdapterPosition();
         final Pet removedPet = mPets.get(itemPosition);

@@ -4,6 +4,7 @@ import com.mooveit.android.androidtemplateproject.common.di.components.Applicati
 import com.mooveit.android.androidtemplateproject.common.di.modules.ApplicationModule;
 import com.mooveit.android.androidtemplateproject.common.di.modules.SchedulerModule;
 import com.mooveit.android.androidtemplateproject.common.mock.di.modules.MockRepositoriesModule;
+import com.mooveit.android.androidtemplateproject.home.HomeActivityTest;
 
 import javax.inject.Singleton;
 
@@ -14,4 +15,6 @@ import dagger.Component;
         modules = {ApplicationModule.class, MockRepositoriesModule.class, SchedulerModule.class}
 )
 public interface MockApplicationComponent extends ApplicationComponent {
+
+    void inject(HomeActivityTest homeActivityTest);
 }
