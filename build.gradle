@@ -31,13 +31,13 @@ project.ext {
     supportLibVersion = "25.1.0"
 
     // External
-    daggerVersion = "2.0.1"
+    daggerVersion = "2.8"
     javaxAnnotationVersion = "1.0"
     retrofitVersion = "2.1.0"
     okHttpVersion = "3.5.0"
     rxAndroidVersion = "1.2.1"
     rxJavaVersion = "1.2.4"
-    butterKnifeVersion = "8.4.0"
+    butterKnifeVersion = "8.5.1"
     timberVersion = "4.1.2"
     sqlBriteVersion = "1.1.1"
 
