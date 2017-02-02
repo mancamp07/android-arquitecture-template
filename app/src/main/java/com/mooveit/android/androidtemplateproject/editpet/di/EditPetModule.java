@@ -1,6 +1,7 @@
 package com.mooveit.android.androidtemplateproject.editpet.di;
 
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
+import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractor;
 import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractorImpl;
 import com.mooveit.android.androidtemplateproject.editpet.presenter.EditPetView;
@@ -27,7 +28,8 @@ public class EditPetModule {
 
     @Provides
     @PerActivity
-    EditPetViewModel provideEditPetViewModel(EditPetInteractor editPetInteractor) {
-        return new EditPetViewModel(mEditPetView, editPetInteractor);
+    EditPetViewModel provideEditPetViewModel(SchedulerProvider schedulerProvider,
+                                             EditPetInteractor editPetInteractor) {
+        return new EditPetViewModel(mEditPetView, schedulerProvider, editPetInteractor);
     }
 }

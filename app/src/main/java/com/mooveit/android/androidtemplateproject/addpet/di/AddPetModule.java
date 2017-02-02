@@ -6,6 +6,7 @@ import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetView;
 import com.mooveit.android.androidtemplateproject.addpet.presenter.AddPetViewModel;
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
+import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,8 +28,9 @@ public class AddPetModule {
 
     @Provides
     @PerActivity
-    AddPetViewModel provideAddPetViewModel(AddPetInteractor addPetInteractor) {
-        return new AddPetViewModel(mAddPetView, addPetInteractor);
+    AddPetViewModel provideAddPetViewModel(SchedulerProvider schedulerProvider,
+                                           AddPetInteractor addPetInteractor) {
+        return new AddPetViewModel(mAddPetView, schedulerProvider, addPetInteractor);
     }
 
 }

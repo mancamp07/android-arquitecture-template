@@ -2,12 +2,7 @@ package com.mooveit.android.androidtemplateproject.petdetails.di;
 
 import com.mooveit.android.androidtemplateproject.common.di.scopes.PerActivity;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
-import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractor;
-import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractorImpl;
-import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractor;
-import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractorImpl;
-import com.mooveit.android.androidtemplateproject.home.presenter.HomeView;
-import com.mooveit.android.androidtemplateproject.home.presenter.HomeViewModel;
+import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.petdetails.domain.GetPetDetailsInteractor;
 import com.mooveit.android.androidtemplateproject.petdetails.domain.GetPetDetailsInteractorImpl;
 import com.mooveit.android.androidtemplateproject.petdetails.presenter.PetDetailsView;
@@ -33,7 +28,8 @@ public class PetDetailsModule {
 
     @Provides
     @PerActivity
-    PetDetailsViewModel provideHomeViewModel(GetPetDetailsInteractor getPetsInteractor) {
-        return new PetDetailsViewModel(mPetDetailsView, getPetsInteractor);
+    PetDetailsViewModel provideHomeViewModel(SchedulerProvider schedulerProvider,
+                                             GetPetDetailsInteractor getPetsInteractor) {
+        return new PetDetailsViewModel(mPetDetailsView, schedulerProvider, getPetsInteractor);
     }
 }
