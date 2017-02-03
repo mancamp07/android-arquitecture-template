@@ -20,4 +20,9 @@ public class TestApplication extends AndroidTemplateApplication {
 
         return mMockApplicationComponent;
     }
+
+
+    public MockApplicationComponent getMockApplicationComponent() {
+        return (MockApplicationComponent) getApplicationComponent();
+    }
 }
