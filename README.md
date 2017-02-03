@@ -1,5 +1,5 @@
 # Pet Store app - Android architecture showcase
-This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in our apps
+This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in our apps.
 
 ## View
 The view are interfaces that could be implemented by any android view such as Activity, Fragment or Custom View. These views are dummy in the sense that they only act in response to orders from the presenter.
@@ -17,11 +17,11 @@ The repository first persist the changes locally and then syncs with the server.
 
 ### Unit testing
 Presenters, Interactors and Repositories are unit tested by using JUnit and Mockito. 
-They are all framework agnostic components by using plain Java objects and no references to Android specific code thus making unit tests really easy to achieve
+They are all framework agnostic components by using plain Java objects and no references to Android specific code thus making unit tests really easy to achieve.
 
 ### UI testing
-We use both Robolectric and Espresso tests for integration and UI tests
+We use Espresso tests together with Mockito for integration and UI tests. Mockito allows us to mock the Observables returned from the repository to be able to test different states of the ui like success, failure and progress.
 
 ## DI
 We use dagger 2 as dependency injection framework which allows us to have a good control of the dependency graph and inject mocked dependencies while testing.
-We organize the dependencies in modules in a way they can be easily interchangeable with mock modules while testing. We follow this approach https://google.github.io/dagger/testing.html#organize-modules-for-testability
+We organize the dependencies in modules in a way they can be easily interchangeable with mock modules while testing. We follow this approach https://google.github.io/dagger/testing.html#organize-modules-for-testability.
