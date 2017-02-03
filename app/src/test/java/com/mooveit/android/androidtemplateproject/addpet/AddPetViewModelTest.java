@@ -7,10 +7,12 @@ import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 
 import org.junit.Before;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 
 import rx.Observable;
 
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -42,10 +44,11 @@ public class AddPetViewModelTest extends BaseTest {
 
         mAddPetViewModel.createPet(mMockPet);
 
-        verify(mAddPetView).showProgress();
-        verify(mAddPetInteractor).addPet(mMockPet);
-        verify(mAddPetView).hideProgress();
-        verify(mAddPetView).showPetCreated();
+        InOrder inOrder = inOrder(mAddPetView, mAddPetInteractor);
+        inOrder.verify(mAddPetView).showProgress();
+        inOrder.verify(mAddPetInteractor).addPet(mMockPet);
+        inOrder.verify(mAddPetView).hideProgress();
+        inOrder.verify(mAddPetView).showPetCreated();
 
         verifyNoMoreInteractions(mAddPetView);
         verifyNoMoreInteractions(mAddPetInteractor);
@@ -59,10 +62,11 @@ public class AddPetViewModelTest extends BaseTest {
 
         mAddPetViewModel.createPet(mMockPet);
 
-        verify(mAddPetView).showProgress();
-        verify(mAddPetInteractor).addPet(mMockPet);
-        verify(mAddPetView).hideProgress();
-        verify(mAddPetView).showError(mError.getMessage());
+        InOrder inOrder = inOrder(mAddPetView, mAddPetInteractor);
+        inOrder.verify(mAddPetView).showProgress();
+        inOrder.verify(mAddPetInteractor).addPet(mMockPet);
+        inOrder.verify(mAddPetView).hideProgress();
+        inOrder.verify(mAddPetView).showError(mError.getMessage());
 
         verifyNoMoreInteractions(mAddPetView);
         verifyNoMoreInteractions(mAddPetInteractor);

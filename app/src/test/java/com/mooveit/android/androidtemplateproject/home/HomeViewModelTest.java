@@ -8,12 +8,14 @@ import com.mooveit.android.androidtemplateproject.home.presenter.HomeView;
 import com.mooveit.android.androidtemplateproject.home.presenter.HomeViewModel;
 
 import org.junit.Before;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 
 import java.util.List;
 
 import rx.Observable;
 
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -52,10 +54,11 @@ public class HomeViewModelTest extends BaseTest {
 
         mHomeViewModel.fetchPets(true);
 
-        verify(mHomeView).showProgress();
-        verify(mGetPetsInteractor).getPets(true);
-        verify(mHomeView).hideProgress();
-        verify(mHomeView).showPets(mMockPets);
+        InOrder inOrder = inOrder(mHomeView, mGetPetsInteractor);
+        inOrder.verify(mHomeView).showProgress();
+        inOrder.verify(mGetPetsInteractor).getPets(true);
+        inOrder.verify(mHomeView).hideProgress();
+        inOrder.verify(mHomeView).showPets(mMockPets);
     }
 
     @org.junit.Test
@@ -66,10 +69,11 @@ public class HomeViewModelTest extends BaseTest {
 
         mHomeViewModel.fetchPets(false);
 
-        verify(mHomeView).showProgress();
-        verify(mGetPetsInteractor).getPets(false);
-        verify(mHomeView).hideProgress();
-        verify(mHomeView).showPets(mMockPets);
+        InOrder inOrder = inOrder(mHomeView, mGetPetsInteractor);
+        inOrder.verify(mHomeView).showProgress();
+        inOrder.verify(mGetPetsInteractor).getPets(false);
+        inOrder.verify(mHomeView).hideProgress();
+        inOrder.verify(mHomeView).showPets(mMockPets);
 
         verifyNoMoreInteractions(mHomeView);
         verifyNoMoreInteractions(mGetPetsInteractor);
@@ -83,11 +87,12 @@ public class HomeViewModelTest extends BaseTest {
 
         mHomeViewModel.fetchPets(true);
 
-        verify(mHomeView).showProgress();
-        verify(mGetPetsInteractor).getPets(true);
-        verify(mHomeView).hideProgress();
-        verify(mHomeView).showError(mError.getMessage());
-        verify(mHomeView).showPets();
+        InOrder inOrder = inOrder(mHomeView, mGetPetsInteractor);
+        inOrder.verify(mHomeView).showProgress();
+        inOrder.verify(mGetPetsInteractor).getPets(true);
+        inOrder.verify(mHomeView).hideProgress();
+        inOrder.verify(mHomeView).showError(mError.getMessage());
+        inOrder.verify(mHomeView).showPets();
 
         verifyNoMoreInteractions(mHomeView);
         verifyNoMoreInteractions(mGetPetsInteractor);
@@ -101,8 +106,9 @@ public class HomeViewModelTest extends BaseTest {
 
         mHomeViewModel.onDeletePet(mMockPet);
 
-        verify(mDeletePetInteractor).deletePet(mMockPet);
-        verify(mHomeView).showPets();
+        InOrder inOrder = inOrder(mHomeView, mDeletePetInteractor);
+        inOrder.verify(mDeletePetInteractor).deletePet(mMockPet);
+        inOrder.verify(mHomeView).showPets();
 
         verifyNoMoreInteractions(mHomeView);
         verifyNoMoreInteractions(mGetPetsInteractor);
@@ -115,8 +121,9 @@ public class HomeViewModelTest extends BaseTest {
 
         mHomeViewModel.onDeletePet(mMockPet);
 
-        verify(mDeletePetInteractor).deletePet(mMockPet);
-        verify(mHomeView).showError(mError.getMessage());
+        InOrder inOrder = inOrder(mHomeView, mDeletePetInteractor);
+        inOrder.verify(mDeletePetInteractor).deletePet(mMockPet);
+        inOrder.verify(mHomeView).showError(mError.getMessage());
 
         verifyNoMoreInteractions(mHomeView);
         verifyNoMoreInteractions(mGetPetsInteractor);
