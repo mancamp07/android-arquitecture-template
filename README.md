@@ -2,8 +2,8 @@
 This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in our apps.
 
 ## View
-The view are interfaces that could be implemented by any android view such as Activity, Fragment or Custom View. These views are dummy in the sense that they only act in response to orders from the presenter.
-## Presenter
+The view are interfaces that could be implemented by any android view such as Activity, Fragment or Custom View. These views are dummy in the sense that they only act in response to orders from the presentation layer.
+## Presentation
 Serves as a middle man between Views (abstractions over Android specific components) and Business logic (Interactors).
 ## Interactors
 Each interactor is a reusable component that executes a specific business logic such as "Add a pet", "Edit a pet", "Delete a pet". It fetches the data from a repository, executes business logic and returns the result to the presenter.
