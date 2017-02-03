@@ -11,7 +11,6 @@ import com.mooveit.android.androidtemplateproject.common.TestApplication;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
