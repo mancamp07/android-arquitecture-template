@@ -21,7 +21,7 @@ import butterknife.BindView;
 
 public class PetDetailsActivity extends BaseActivity implements PetDetailsView {
 
-    private static final String ARG_PET_ID_EXTRA = "ARG:PET_ID:Long";
+    public static final String ARG_PET_ID_EXTRA = "ARG:PET_ID:Long";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
