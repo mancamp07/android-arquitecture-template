@@ -2,7 +2,6 @@ package com.mooveit.android.androidtemplateproject.petdetails;
 
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;

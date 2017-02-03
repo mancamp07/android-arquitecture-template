@@ -7,13 +7,13 @@ import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetVi
 import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetViewModel;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 
 import rx.Observable;
 
 import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
@@ -36,7 +36,7 @@ public class EditPetViewModelTest extends BaseTest {
         mEditPetViewModel = new EditPetViewModel(mEditPetView, mSchedulerProvider, mEditPetInteractor);
     }
 
-    @org.junit.Test
+    @Test
     public void editPet_successShowsMessage() {
 
         when(mEditPetInteractor.editPet(mMockPet))
@@ -54,7 +54,7 @@ public class EditPetViewModelTest extends BaseTest {
         verifyNoMoreInteractions(mEditPetInteractor);
     }
 
-    @org.junit.Test
+    @Test
     public void editPet_failureShowsMessage() {
 
         when(mEditPetInteractor.editPet(mMockPet))

@@ -8,6 +8,7 @@ import com.mooveit.android.androidtemplateproject.home.presenter.HomeView;
 import com.mooveit.android.androidtemplateproject.home.presenter.HomeViewModel;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 
@@ -16,7 +17,6 @@ import java.util.List;
 import rx.Observable;
 
 import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
@@ -46,7 +46,7 @@ public class HomeViewModelTest extends BaseTest {
                 mGetPetsInteractor, mDeletePetInteractor);
     }
 
-    @org.junit.Test
+    @Test
     public void getPetsForceRefresh_successCallsShowPets() {
 
         when(mGetPetsInteractor.getPets(true))
@@ -61,7 +61,7 @@ public class HomeViewModelTest extends BaseTest {
         inOrder.verify(mHomeView).showPets(mMockPets);
     }
 
-    @org.junit.Test
+    @Test
     public void getPets_successCallsShowPets() {
 
         when(mGetPetsInteractor.getPets(false))
@@ -79,7 +79,7 @@ public class HomeViewModelTest extends BaseTest {
         verifyNoMoreInteractions(mGetPetsInteractor);
     }
 
-    @org.junit.Test
+    @Test
     public void getPets_errorHidesProgressAndShowsMessage() {
 
         when(mGetPetsInteractor.getPets(true))
@@ -98,7 +98,7 @@ public class HomeViewModelTest extends BaseTest {
         verifyNoMoreInteractions(mGetPetsInteractor);
     }
 
-    @org.junit.Test
+    @Test
     public void deletePet_successCallsShowPets() {
 
         when(mDeletePetInteractor.deletePet(mMockPet))
@@ -114,7 +114,7 @@ public class HomeViewModelTest extends BaseTest {
         verifyNoMoreInteractions(mGetPetsInteractor);
     }
 
-    @org.junit.Test
+    @Test
     public void deletePet_errorShowsMessage() {
         when(mDeletePetInteractor.deletePet(mMockPet))
                 .thenReturn(Observable.error(mError));
