@@ -33,7 +33,7 @@ public class PetDetailsActivity extends BaseActivity implements PetDetailsView {
     TextView mPetStatusTV;
 
     @Inject
-    PetDetailsViewModel mPetDetailsViewModel;
+    PetDetailsPresenter mPetDetailsPresenter;
 
     private long mPetId;
 
@@ -53,13 +53,13 @@ public class PetDetailsActivity extends BaseActivity implements PetDetailsView {
         retrieveExtras();
         setupToolbar();
 
-        mPetDetailsViewModel.getPet(mPetId);
+        mPetDetailsPresenter.getPet(mPetId);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mPetDetailsViewModel.onViewDetached();
+        mPetDetailsPresenter.onViewDetached();
     }
 
     private void setupToolbar() {

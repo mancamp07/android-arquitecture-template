@@ -6,8 +6,8 @@ import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteracto
 import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractorImpl;
 import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractor;
 import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractorImpl;
+import com.mooveit.android.androidtemplateproject.home.presenter.HomePresenter;
 import com.mooveit.android.androidtemplateproject.home.presenter.HomeView;
-import com.mooveit.android.androidtemplateproject.home.presenter.HomeViewModel;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
 
 import dagger.Module;
@@ -36,10 +36,10 @@ public class HomeModule {
 
     @Provides
     @PerActivity
-    HomeViewModel provideHomeViewModel(SchedulerProvider schedulerProvider,
+    HomePresenter provideHomeViewModel(SchedulerProvider schedulerProvider,
                                        GetPetsInteractor getPetsInteractor,
                                        DeletePetInteractor deletePetInteractor) {
-        return new HomeViewModel(mHomeView, schedulerProvider,
+        return new HomePresenter(mHomeView, schedulerProvider,
                 getPetsInteractor, deletePetInteractor);
     }
 }

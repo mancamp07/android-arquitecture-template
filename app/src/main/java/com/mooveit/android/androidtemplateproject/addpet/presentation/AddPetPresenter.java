@@ -2,20 +2,20 @@ package com.mooveit.android.androidtemplateproject.addpet.presentation;
 
 import com.mooveit.android.androidtemplateproject.addpet.domain.AddPetInteractor;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
-import com.mooveit.android.androidtemplateproject.common.presentation.ViewModel;
+import com.mooveit.android.androidtemplateproject.common.presentation.Presenter;
 import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 
 import rx.Subscriber;
 
-public class AddPetViewModel extends ViewModel {
+public class AddPetPresenter extends Presenter {
 
-    private static final String TAG = AddPetViewModel.class.getSimpleName();
+    private static final String TAG = AddPetPresenter.class.getSimpleName();
 
     private final AddPetView mAddPetView;
     private final SchedulerProvider mSchedulerProvider;
     private final AddPetInteractor mAddPetInteractor;
 
-    public AddPetViewModel(AddPetView addPetView,
+    public AddPetPresenter(AddPetView addPetView,
                            SchedulerProvider schedulerProvider, AddPetInteractor addPetInteractor) {
         this.mAddPetView = addPetView;
         this.mSchedulerProvider = schedulerProvider;

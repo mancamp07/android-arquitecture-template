@@ -1,7 +1,7 @@
 package com.mooveit.android.androidtemplateproject.home.presenter;
 
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
-import com.mooveit.android.androidtemplateproject.common.presentation.ViewModel;
+import com.mooveit.android.androidtemplateproject.common.presentation.Presenter;
 import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractor;
 import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractor;
@@ -10,14 +10,14 @@ import java.util.List;
 
 import rx.Subscriber;
 
-public class HomeViewModel extends ViewModel {
+public class HomePresenter extends Presenter {
 
     private final HomeView mHomeView;
     private final SchedulerProvider mSchedulerProvider;
     private final GetPetsInteractor mGetPetsInteractor;
     private final DeletePetInteractor mDeletePetInteractor;
 
-    public HomeViewModel(HomeView homeView,
+    public HomePresenter(HomeView homeView,
                          SchedulerProvider schedulerProvider,
                          GetPetsInteractor getPetsInteractor,
                          DeletePetInteractor deletePetInteractor) {

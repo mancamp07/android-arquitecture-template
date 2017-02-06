@@ -4,8 +4,8 @@ import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.home.domain.DeletePetInteractor;
 import com.mooveit.android.androidtemplateproject.home.domain.GetPetsInteractor;
+import com.mooveit.android.androidtemplateproject.home.presenter.HomePresenter;
 import com.mooveit.android.androidtemplateproject.home.presenter.HomeView;
-import com.mooveit.android.androidtemplateproject.home.presenter.HomeViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class HomeViewModelTest extends BaseTest {
+public class HomePresenterTest extends BaseTest {
 
     @Mock
     List<Pet> mMockPets;
@@ -32,7 +32,7 @@ public class HomeViewModelTest extends BaseTest {
     HomeView mHomeView;
 
     private Throwable mError = new Throwable("Error!");
-    private HomeViewModel mHomeViewModel;
+    private HomePresenter mHomePresenter;
 
     @Mock
     GetPetsInteractor mGetPetsInteractor;
@@ -42,7 +42,7 @@ public class HomeViewModelTest extends BaseTest {
 
     @Before
     public void setup() {
-        mHomeViewModel = new HomeViewModel(mHomeView, mSchedulerProvider,
+        mHomePresenter = new HomePresenter(mHomeView, mSchedulerProvider,
                 mGetPetsInteractor, mDeletePetInteractor);
     }
 
@@ -52,7 +52,7 @@ public class HomeViewModelTest extends BaseTest {
         when(mGetPetsInteractor.getPets(true))
                 .thenReturn(Observable.just(mMockPets));
 
-        mHomeViewModel.fetchPets(true);
+        mHomePresenter.fetchPets(true);
 
         InOrder inOrder = inOrder(mHomeView, mGetPetsInteractor);
         inOrder.verify(mHomeView).showProgress();
@@ -67,7 +67,7 @@ public class HomeViewModelTest extends BaseTest {
         when(mGetPetsInteractor.getPets(false))
                 .thenReturn(Observable.just(mMockPets));
 
-        mHomeViewModel.fetchPets(false);
+        mHomePresenter.fetchPets(false);
 
         InOrder inOrder = inOrder(mHomeView, mGetPetsInteractor);
         inOrder.verify(mHomeView).showProgress();
@@ -85,7 +85,7 @@ public class HomeViewModelTest extends BaseTest {
         when(mGetPetsInteractor.getPets(true))
                 .thenReturn(Observable.error(mError));
 
-        mHomeViewModel.fetchPets(true);
+        mHomePresenter.fetchPets(true);
 
         InOrder inOrder = inOrder(mHomeView, mGetPetsInteractor);
         inOrder.verify(mHomeView).showProgress();
@@ -104,7 +104,7 @@ public class HomeViewModelTest extends BaseTest {
         when(mDeletePetInteractor.deletePet(mMockPet))
                 .thenReturn(Observable.just(null));
 
-        mHomeViewModel.onDeletePet(mMockPet);
+        mHomePresenter.onDeletePet(mMockPet);
 
         InOrder inOrder = inOrder(mHomeView, mDeletePetInteractor);
         inOrder.verify(mDeletePetInteractor).deletePet(mMockPet);
@@ -119,7 +119,7 @@ public class HomeViewModelTest extends BaseTest {
         when(mDeletePetInteractor.deletePet(mMockPet))
                 .thenReturn(Observable.error(mError));
 
-        mHomeViewModel.onDeletePet(mMockPet);
+        mHomePresenter.onDeletePet(mMockPet);
 
         InOrder inOrder = inOrder(mHomeView, mDeletePetInteractor);
         inOrder.verify(mDeletePetInteractor).deletePet(mMockPet);

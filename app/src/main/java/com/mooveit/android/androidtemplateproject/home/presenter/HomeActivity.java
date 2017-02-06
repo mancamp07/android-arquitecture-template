@@ -57,7 +57,7 @@ public class HomeActivity extends BaseActivity implements HomeView,
     int mItemVerticalSpacing;
 
     @Inject
-    HomeViewModel mHomeViewModel;
+    HomePresenter mHomeViewModel;
 
     private PetsListAdapter mPetsListAdapter;
 

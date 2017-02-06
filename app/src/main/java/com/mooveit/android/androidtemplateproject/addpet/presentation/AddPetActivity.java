@@ -42,7 +42,7 @@ public class AddPetActivity extends BaseActivity implements AddPetView {
     private Snackbar mSnackbar;
 
     @Inject
-    AddPetViewModel mAddPetViewModel;
+    AddPetPresenter mAddPetPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class AddPetActivity extends BaseActivity implements AddPetView {
         if (mPetNameET.getText().toString().isEmpty()) {
             mPetNameTIL.setError(mEmptyNameErrorMessage);
         } else {
-            mAddPetViewModel.createPet(createPet());
+            mAddPetPresenter.createPet(createPet());
         }
     }
 
@@ -94,7 +94,7 @@ public class AddPetActivity extends BaseActivity implements AddPetView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mAddPetViewModel.onViewDetached();
+        mAddPetPresenter.onViewDetached();
     }
 
     @Override
