@@ -41,6 +41,7 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExt
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static com.mooveit.android.androidtemplateproject.common.util.CustomViewActions.actionOnItemChildViewAtPosition;
+import static com.mooveit.android.androidtemplateproject.common.util.CustomViewMatchers.isContentLoadingProgressBarDisplayed;
 import static org.hamcrest.Matchers.allOf;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -107,7 +108,7 @@ public class HomeActivityTest extends BaseAndroidTest {
         mActivityRule.launchActivity(null);
 
         onView(withId(R.id.progressbar))
-                .check(matches(isDisplayed()));
+                .check(matches(isContentLoadingProgressBarDisplayed()));
     }
 
     @Test
