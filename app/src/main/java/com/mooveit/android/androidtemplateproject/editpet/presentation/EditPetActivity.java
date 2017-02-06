@@ -41,7 +41,7 @@ public class EditPetActivity extends BaseActivity implements EditPetView {
     String mEmptyNameErrorMessage;
 
     @Inject
-    EditPetViewModel mEditPetViewModel;
+    EditPetPresenter mEditPetPresenter;
 
     public static Intent startActivityIntent(Context context, Pet pet) {
         Intent intent = new Intent(context, EditPetActivity.class);
@@ -71,7 +71,7 @@ public class EditPetActivity extends BaseActivity implements EditPetView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mEditPetViewModel.onViewDetached();
+        mEditPetPresenter.onViewDetached();
     }
 
     private void setupToolbar() {
@@ -97,7 +97,7 @@ public class EditPetActivity extends BaseActivity implements EditPetView {
             mPetNameTIL.setError(mEmptyNameErrorMessage);
         } else {
             mPet.setName(newName);
-            mEditPetViewModel.editPet(mPet);
+            mEditPetPresenter.editPet(mPet);
         }
     }
 

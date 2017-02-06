@@ -4,8 +4,8 @@ package com.mooveit.android.androidtemplateproject.petdetails;
 import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.petdetails.domain.GetPetDetailsInteractor;
+import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsPresenter;
 import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsView;
-import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class PetDetailsViewModelTest extends BaseTest {
+public class PetDetailsPresenterTest extends BaseTest {
 
     private static final long PET_ID = 123456;
 
@@ -32,12 +32,11 @@ public class PetDetailsViewModelTest extends BaseTest {
     GetPetDetailsInteractor mGetPetDetailsInteractor;
 
     private Throwable mError = new Throwable("Error!");
-    private PetDetailsViewModel mPetDetailsViewModel;
+    private PetDetailsPresenter mPetDetailsPresenter;
 
     @Before
     public void setup() {
-
-        mPetDetailsViewModel = new PetDetailsViewModel(mPetDetailsView,
+        mPetDetailsPresenter = new PetDetailsPresenter(mPetDetailsView,
                 mSchedulerProvider, mGetPetDetailsInteractor);
     }
 
@@ -50,7 +49,7 @@ public class PetDetailsViewModelTest extends BaseTest {
         when(mGetPetDetailsInteractor.getPet(PET_ID))
                 .thenReturn(Observable.just(mMockPet));
 
-        mPetDetailsViewModel.getPet(PET_ID);
+        mPetDetailsPresenter.getPet(PET_ID);
 
         InOrder inOrder = inOrder(mPetDetailsView, mGetPetDetailsInteractor);
         inOrder.verify(mPetDetailsView).showProgress();
@@ -68,7 +67,7 @@ public class PetDetailsViewModelTest extends BaseTest {
         when(mGetPetDetailsInteractor.getPet(PET_ID))
                 .thenReturn(Observable.error(mError));
 
-        mPetDetailsViewModel.getPet(PET_ID);
+        mPetDetailsPresenter.getPet(PET_ID);
 
         InOrder inOrder = inOrder(mPetDetailsView, mGetPetDetailsInteractor);
         inOrder.verify(mPetDetailsView).showProgress();

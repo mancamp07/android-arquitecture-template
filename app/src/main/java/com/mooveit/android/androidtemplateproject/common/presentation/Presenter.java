@@ -3,7 +3,7 @@ package com.mooveit.android.androidtemplateproject.common.presentation;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public abstract class ViewModel {
+public abstract class Presenter {
 
     protected CompositeSubscription mCompositeSubscription = new CompositeSubscription();
 

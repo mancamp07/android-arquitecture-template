@@ -5,8 +5,8 @@ import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRe
 import com.mooveit.android.androidtemplateproject.common.rx.SchedulerProvider;
 import com.mooveit.android.androidtemplateproject.petdetails.domain.GetPetDetailsInteractor;
 import com.mooveit.android.androidtemplateproject.petdetails.domain.GetPetDetailsInteractorImpl;
+import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsPresenter;
 import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsView;
-import com.mooveit.android.androidtemplateproject.petdetails.presentation.PetDetailsViewModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,8 +28,8 @@ public class PetDetailsModule {
 
     @Provides
     @PerActivity
-    PetDetailsViewModel provideHomeViewModel(SchedulerProvider schedulerProvider,
+    PetDetailsPresenter provideHomeViewModel(SchedulerProvider schedulerProvider,
                                              GetPetDetailsInteractor getPetsInteractor) {
-        return new PetDetailsViewModel(mPetDetailsView, schedulerProvider, getPetsInteractor);
+        return new PetDetailsPresenter(mPetDetailsView, schedulerProvider, getPetsInteractor);
     }
 }

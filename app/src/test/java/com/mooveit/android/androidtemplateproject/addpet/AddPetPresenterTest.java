@@ -1,8 +1,8 @@
 package com.mooveit.android.androidtemplateproject.addpet;
 
 import com.mooveit.android.androidtemplateproject.addpet.domain.AddPetInteractor;
+import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetPresenter;
 import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetView;
-import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetViewModel;
 import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class AddPetViewModelTest extends BaseTest {
+public class AddPetPresenterTest extends BaseTest {
 
     @Mock
     Pet mMockPet;
@@ -28,11 +28,11 @@ public class AddPetViewModelTest extends BaseTest {
     AddPetInteractor mAddPetInteractor;
 
     private Throwable mError = new Throwable("Error!");
-    private AddPetViewModel mAddPetViewModel;
+    private AddPetPresenter mAddPetPresenter;
 
     @Before
     public void setup() {
-        mAddPetViewModel = new AddPetViewModel(mAddPetView, mSchedulerProvider, mAddPetInteractor);
+        mAddPetPresenter = new AddPetPresenter(mAddPetView, mSchedulerProvider, mAddPetInteractor);
     }
 
     @org.junit.Test
@@ -41,7 +41,7 @@ public class AddPetViewModelTest extends BaseTest {
         when(mAddPetInteractor.addPet(mMockPet))
                 .thenReturn(Observable.just(mMockPet));
 
-        mAddPetViewModel.createPet(mMockPet);
+        mAddPetPresenter.createPet(mMockPet);
 
         InOrder inOrder = inOrder(mAddPetView, mAddPetInteractor);
         inOrder.verify(mAddPetView).showProgress();
@@ -59,7 +59,7 @@ public class AddPetViewModelTest extends BaseTest {
         when(mAddPetInteractor.addPet(mMockPet))
                 .thenReturn(Observable.error(mError));
 
-        mAddPetViewModel.createPet(mMockPet);
+        mAddPetPresenter.createPet(mMockPet);
 
         InOrder inOrder = inOrder(mAddPetView, mAddPetInteractor);
         inOrder.verify(mAddPetView).showProgress();

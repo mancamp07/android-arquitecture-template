@@ -3,8 +3,8 @@ package com.mooveit.android.androidtemplateproject.editpet;
 import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.editpet.domain.EditPetInteractor;
+import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetPresenter;
 import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetView;
-import com.mooveit.android.androidtemplateproject.editpet.presentation.EditPetViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class EditPetViewModelTest extends BaseTest {
+public class EditPetPresenterTest extends BaseTest {
 
     @Mock
     Pet mMockPet;
@@ -26,14 +26,14 @@ public class EditPetViewModelTest extends BaseTest {
     EditPetView mEditPetView;
 
     private Throwable mError = new Throwable("Error!");
-    private EditPetViewModel mEditPetViewModel;
+    private EditPetPresenter mEditPetPresenter;
 
     @Mock
     EditPetInteractor mEditPetInteractor;
 
     @Before
     public void setup() {
-        mEditPetViewModel = new EditPetViewModel(mEditPetView, mSchedulerProvider, mEditPetInteractor);
+        mEditPetPresenter = new EditPetPresenter(mEditPetView, mSchedulerProvider, mEditPetInteractor);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class EditPetViewModelTest extends BaseTest {
         when(mEditPetInteractor.editPet(mMockPet))
                 .thenReturn(Observable.just(mMockPet));
 
-        mEditPetViewModel.editPet(mMockPet);
+        mEditPetPresenter.editPet(mMockPet);
 
         InOrder inOrder = inOrder(mEditPetView, mEditPetInteractor);
         inOrder.verify(mEditPetView).showProgress();
@@ -60,7 +60,7 @@ public class EditPetViewModelTest extends BaseTest {
         when(mEditPetInteractor.editPet(mMockPet))
                 .thenReturn(Observable.error(mError));
 
-        mEditPetViewModel.editPet(mMockPet);
+        mEditPetPresenter.editPet(mMockPet);
 
         InOrder inOrder = inOrder(mEditPetView, mEditPetInteractor);
         inOrder.verify(mEditPetView).showProgress();
