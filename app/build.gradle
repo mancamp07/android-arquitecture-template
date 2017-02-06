@@ -118,3 +118,20 @@ dependencies {
     testCompile "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-core:$mockitoVersion"
 }
+
+def adb = android.getAdbExe().toString()
+
+afterEvaluate {
+
+    task grantAnimationPermissionStaging(type: Exec, dependsOn: 'installStagingDebug') {
+        commandLine "$adb shell pm grant com.mooveit.android.androidtemplateproject android.permission.SET_ANIMATION_SCALE".split(' ')
+    }
+
+    // When launching individual tests from Android Studio, it seems that only the assemble tasks
+    // get called directly, not the install* versions
+    tasks.each { task ->
+        if (task.name.startsWith('assembleStagingDebugAndroidTest')) {
+            task.dependsOn grantAnimationPermissionStaging
+        }
+    }
+}
