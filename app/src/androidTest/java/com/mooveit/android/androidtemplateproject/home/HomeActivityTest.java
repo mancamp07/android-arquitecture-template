@@ -2,7 +2,6 @@ package com.mooveit.android.androidtemplateproject.home;
 
 
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
@@ -57,8 +56,6 @@ public class HomeActivityTest extends BaseAndroidTest {
 
     @Inject
     PetsRepository mPetsRepository;
-
-    private CountingIdlingResource mCountingIdlingResource = new CountingIdlingResource("resource");
 
     @Before
     public void setup() {
