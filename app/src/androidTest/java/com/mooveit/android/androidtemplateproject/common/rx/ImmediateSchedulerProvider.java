@@ -3,6 +3,7 @@ package com.mooveit.android.androidtemplateproject.common.rx;
 import javax.inject.Inject;
 
 import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class ImmediateSchedulerProvider implements SchedulerProvider {
@@ -23,6 +24,6 @@ public class ImmediateSchedulerProvider implements SchedulerProvider {
 
     @Override
     public Scheduler main() {
-        return Schedulers.immediate();
+        return AndroidSchedulers.mainThread();
     }
 }

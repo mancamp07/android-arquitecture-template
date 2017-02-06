@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v4.widget.CustomContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,7 +48,7 @@ public class HomeActivity extends BaseActivity implements HomeView,
     RecyclerView mPetsListRV;
 
     @BindView(R.id.progressbar)
-    ContentLoadingProgressBar mProgressBar;
+    CustomContentLoadingProgressBar mProgressBar;
 
     @BindView(R.id.empty_pets_list)
     View mPetsListEmptyView;

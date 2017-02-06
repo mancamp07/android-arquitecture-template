@@ -2,13 +2,13 @@ package com.mooveit.android.androidtemplateproject.home;
 
 
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetActivity;
+import com.mooveit.android.androidtemplateproject.common.BaseAndroidTest;
 import com.mooveit.android.androidtemplateproject.common.TestApplication;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
@@ -40,13 +40,14 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExt
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static com.mooveit.android.androidtemplateproject.common.util.CustomViewActions.actionOnItemChildViewAtPosition;
+import static com.mooveit.android.androidtemplateproject.common.util.CustomViewMatchers.isContentLoadingProgressBarDisplayed;
 import static org.hamcrest.Matchers.allOf;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class HomeActivityTest {
+public class HomeActivityTest extends BaseAndroidTest {
 
     private List<Pet> mPets = new ArrayList<>();
 
@@ -56,10 +57,10 @@ public class HomeActivityTest {
     @Inject
     PetsRepository mPetsRepository;
 
-    private CountingIdlingResource mCountingIdlingResource = new CountingIdlingResource("resource");
-
     @Before
     public void setup() {
+        super.setup();
+
         ((TestApplication) InstrumentationRegistry.getTargetContext().getApplicationContext())
                 .getMockApplicationComponent()
                 .inject(this);
@@ -104,7 +105,7 @@ public class HomeActivityTest {
         mActivityRule.launchActivity(null);
 
         onView(withId(R.id.progressbar))
-                .check(matches(isDisplayed()));
+                .check(matches(isContentLoadingProgressBarDisplayed()));
     }
 
     @Test
