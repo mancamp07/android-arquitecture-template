@@ -7,6 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.mooveit.android.androidtemplateproject.R;
 import com.mooveit.android.androidtemplateproject.addpet.presentation.AddPetActivity;
+import com.mooveit.android.androidtemplateproject.common.BaseAndroidTest;
 import com.mooveit.android.androidtemplateproject.common.TestApplication;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 import com.mooveit.android.androidtemplateproject.common.model.repository.PetsRepository;
@@ -35,7 +36,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class AddPetActivityTest {
+public class AddPetActivityTest extends BaseAndroidTest {
 
     private static final long PET_ID = 12345;
     @Rule
@@ -52,6 +53,8 @@ public class AddPetActivityTest {
 
     @Before
     public void setup() {
+        super.setup();
+
         ((TestApplication) InstrumentationRegistry.getTargetContext().getApplicationContext())
                 .getMockApplicationComponent()
                 .inject(this);
