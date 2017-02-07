@@ -5,4 +5,6 @@ import com.mooveit.android.androidtemplateproject.common.model.datasource.PetsDa
 public interface PetsRepository extends PetsDataSource {
 
     void invalidateCache();
+
+    boolean isCacheDirty();
 }

@@ -1,5 +1,6 @@
 package com.mooveit.android.androidtemplateproject.common.model.repository.impl;
 
+import com.mooveit.android.androidtemplateproject.common.model.datasource.PetsDataSource;
 import com.mooveit.android.androidtemplateproject.common.model.datasource.local.LocalPetsDataSource;
 import com.mooveit.android.androidtemplateproject.common.model.datasource.remote.RemotePetsDataSource;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
@@ -12,13 +13,13 @@ import rx.functions.Func1;
 
 public class PetsRepositoryImpl implements PetsRepository {
 
-    private final LocalPetsDataSource mLocalDatasource;
-    private final RemotePetsDataSource mRemoteDatasource;
+    private final PetsDataSource mLocalDatasource;
+    private final PetsDataSource mRemoteDatasource;
 
     private boolean mCacheIsDirty = false;
 
-    public PetsRepositoryImpl(LocalPetsDataSource localDatasource,
-                              RemotePetsDataSource remoteDatasource) {
+    public PetsRepositoryImpl(PetsDataSource localDatasource,
+                              PetsDataSource remoteDatasource) {
         this.mLocalDatasource = localDatasource;
         this.mRemoteDatasource = remoteDatasource;
     }
@@ -26,11 +27,11 @@ public class PetsRepositoryImpl implements PetsRepository {
     @Override
     public Observable<List<Pet>> getPets() {
         Observable<List<Pet>> remotePets = getAndSaveRemotePets();
-        Observable<List<Pet>> localPets = mLocalDatasource.getPets().take(1);
 
         if (mCacheIsDirty) {
             return remotePets;
         } else {
+            Observable<List<Pet>> localPets = mLocalDatasource.getPets().take(1);
             return Observable.concat(localPets, remotePets)
                     .first(pets -> !pets.isEmpty());
         }
@@ -95,5 +96,10 @@ public class PetsRepositoryImpl implements PetsRepository {
     @Override
     public void invalidateCache() {
         mCacheIsDirty = true;
+    }
+
+    @Override
+    public boolean isCacheDirty() {
+        return mCacheIsDirty;
     }
 }
