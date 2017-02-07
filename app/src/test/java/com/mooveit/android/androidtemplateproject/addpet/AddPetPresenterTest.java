@@ -7,6 +7,7 @@ import com.mooveit.android.androidtemplateproject.common.BaseTest;
 import com.mooveit.android.androidtemplateproject.common.model.entities.Pet;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 
@@ -35,7 +36,7 @@ public class AddPetPresenterTest extends BaseTest {
         mAddPetPresenter = new AddPetPresenter(mAddPetView, mSchedulerProvider, mAddPetInteractor);
     }
 
-    @org.junit.Test
+    @Test
     public void addPet_successTriggersSuccessOnView() {
 
         when(mAddPetInteractor.addPet(mMockPet))
@@ -53,7 +54,7 @@ public class AddPetPresenterTest extends BaseTest {
         verifyNoMoreInteractions(mAddPetInteractor);
     }
 
-    @org.junit.Test
+    @Test
     public void addPet_failureShowsMessage() {
 
         when(mAddPetInteractor.addPet(mMockPet))
