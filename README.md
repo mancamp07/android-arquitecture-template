@@ -2,7 +2,7 @@
 This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in our apps.
 
 ## View
-The view are interfaces that could be implemented by any android view such as Activity, Fragment or Custom View. These views are dummy in the sense that they only act in response to orders from the presentation layer.
+The view are interfaces that could be implemented by any android view such as Activities, Fragments or Custom Views. These views are dummy in the sense that they only act in response to orders from the presentation layer.
 ## Presentation
 Serves as a middle man between Views (abstractions over Android specific components) and Business logic (Interactors).
 ## Interactors
@@ -22,6 +22,6 @@ They are all framework agnostic components by using plain Java objects and no re
 ### UI testing
 We use Espresso tests together with Mockito for integration and UI tests. Mockito allows us to mock the Observables returned from the repository to be able to test different states of the ui like success, failure and progress.
 
-## DI
+## Dependency Injection
 We use dagger 2 as dependency injection framework which allows us to have a good control of the dependency graph and inject mocked dependencies while testing.
 We organize the dependencies in modules in a way they can be easily interchangeable with mock modules while testing. We follow this approach https://google.github.io/dagger/testing.html#organize-modules-for-testability.
