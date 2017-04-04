@@ -1,5 +1,3 @@
-[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5898c45c16ae6a01005f08ee&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5898c45c16ae6a01005f08ee/build/latest?branch=master)
-
 # Pet Store app - Android architecture showcase
 This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in our apps.
 
