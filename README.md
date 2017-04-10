@@ -1,6 +1,9 @@
 # Android architecture showcase
 This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in Moove-it apps.
 
+![Clean architecture](https://cdn-images-1.medium.com/max/800/1*evhm4LZIorMYVAh54cJ1Ig.png)
+
+
 ## View
 The view are interfaces that could be implemented by any android view such as Activities, Fragments or Custom Views. These views are dummy in the sense that they only act in response to orders from the presentation layer.
 ## Presentation
