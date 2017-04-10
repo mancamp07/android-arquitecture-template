@@ -28,3 +28,7 @@ We use Espresso tests together with Mockito for integration and UI tests. Mockit
 ## Dependency Injection
 We use dagger 2 as dependency injection framework which allows us to have a good control of the dependency graph and inject mocked dependencies while testing.
 We organize the dependencies in modules in a way they can be easily interchangeable with mock modules while testing. We follow this approach https://google.github.io/dagger/testing.html#organize-modules-for-testability.
+
+## Contributing
+
+See the [contribution guide](CONTRIBUTING.md).
