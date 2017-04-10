@@ -1,5 +1,5 @@
 # Android architecture showcase
-This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in Moove-it apps.
+This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in [Moove-it](http://www.moove-it.com) apps.
 
 ![Clean architecture](https://cdn-images-1.medium.com/max/800/1*evhm4LZIorMYVAh54cJ1Ig.png)
 
