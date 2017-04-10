@@ -1,12 +1,12 @@
-# Pet Store app - Android architecture showcase
-This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in our apps.
+# Android architecture showcase
+This is an Android project that serves as a showcase for an app following a Clean architecture approach. This is a result of an iteration over different approaches we've been using in Moove-it apps.
 
 ## View
 The view are interfaces that could be implemented by any android view such as Activities, Fragments or Custom Views. These views are dummy in the sense that they only act in response to orders from the presentation layer.
 ## Presentation
-Serves as a middle man between Views (abstractions over Android specific components) and Business logic (Interactors).
+Serves as a middle man between views (abstractions over Android specific components) and Business logic (Interactors).
 ## Interactors
-Each interactor is a reusable component that executes a specific business logic such as "Add a pet", "Edit a pet", "Delete a pet". It fetches the data from a repository, executes business logic and returns the result to the presenter.
+Each interactor is a reusable component that executes a specific business logic. In this scenario are: "Add a pet", "Edit a pet", "Delete a pet". It fetches the data from a repository, executes business logic and returns the result to the presenter.
 ## Repository
 Abstracts the datasources from which the Interactors get the data to act upon. This sample uses a database as a local datasource and cache mechanism and also a remote datasource that syncs with with the server using a REST api.
 The repository first persist the changes locally and then syncs with the server. It uses the local data unless it's told that the cached data is stale, thus needing to sync with the server. The syncing mechanism is pretty simple: wipe the database and store the remote items again - this could be improved. 
